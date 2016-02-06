@@ -19,6 +19,9 @@ class Hotel
   def get_delivery_area_for_hotel(area_id)
     DeliveryArea.where({ hotel_id: id, area_id: area_id }).try(:first)
   end
+  def get_delivery_location_for_hotel(area_id)
+    Hotel.where({ area_id: area_id }).try(:first)
+  end
 end
 
 

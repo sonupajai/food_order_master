@@ -1,3 +1,10 @@
+<ol class = "breadcrumb">
+   <li><a href ="<%=root_path %>">Home</a></li>
+   <li><a href = "">Restuarants in  <%= @area.city.name%>   </a></li>
+   <li><%= @area.name%></li>
+</ol>
+<div class="min_div_height">
+<h2>Order from <%= @hotels.count.to_i%> restaurants in <%= @area.name%>, <%= @area.city.name%>.<a href="<%=root_path %>" class="btn btn-primary btn-sm btn-alt b">Change location</a></h2>
 <br/>
 <% @hotels.each do |hotel| %>
 <div class="row">
@@ -36,7 +43,7 @@
                  <%= hotel.get_delivery_area_for_hotel(@area_id).try(:delivery_time) %>
              </div>
               <div class="col-sm-3">
-                <%= hotel.get_delivery_area_for_hotel(@area_id).try(:delivery_charge) %>            
+                <%= hotel.get_delivery_area_for_hotel(@area_id).try(:delivery_charges) %>            
                 </div>
               <div class="col-sm-3">
                 <%= hotel.get_delivery_area_for_hotel(@area_id).try(:min_order_amount) %>
@@ -44,7 +51,7 @@
           </div>
           </div>
           <div class="col-sm-4" >
-              <a href="" class="btn btn-primary">Go to menu</a>
+              <a href="" class="btn btn-success btn-lg">Go to menu</a>
           </div>               
       </div>
        <hr>  
@@ -54,4 +61,4 @@
 </div>
 
  <br>
-  <% end %>
+  <% end %></div>

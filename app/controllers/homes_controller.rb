@@ -11,6 +11,7 @@ autocomplete :city, :name
 
   def hotel_list
   	@area_id = params[:area_id]
+    @area = Area.find(@area_id)
 	  @hotels = Area.find(@area_id).hotels
   end
 end
