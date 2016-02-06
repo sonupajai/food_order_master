@@ -1,0 +1,25 @@
+		
+<script type="text/javascript">
+  $( document ).ready(function() {
+     $(".multipleSelect").select2(); 
+    // $(".select2-selection--single").css('height', '37px')
+  	 $('#city_id').change(function(){
+			    city_id=$("#city_id").val();
+			    $.ajax({
+                url: "/homes/show",
+                type: "GET",
+                data: {city_id:city_id },
+                dataType: "html",
+                success: function (data) {                	
+                    $("#area_id").html(data.toString());           
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+		
+	    });
+
+   
+  });
+</script>

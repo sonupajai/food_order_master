@@ -1,0 +1,85 @@
+$navbar-default-bg: #d9534f   ;
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "jquery.editable-select";
+@import "select2";
+@import "font-awesome";
+
+
+footer {
+background-color: #d33834;
+ color: white !important;
+    
+    font-weight: bold;
+    font-family: serif;
+ }
+.intro { 
+    color: white !important;
+}
+
+.logo { 
+    color: white !important;
+    font-size: 3em;
+    font-weight: bold;
+    font-family: serif;
+}
+.tag_line{ 
+    color: white !important;
+    font-weight: bold;
+}
+
+.menu_font
+{
+	color: white !important;
+	font-size: 1.3em;
+}
+.jumbotron {
+    margin-bottom: 0 !important;
+	background-image: image-url('home.jpg');
+	background-size: cover;
+	height: 600px;
+}
+.listing
+{	
+	list-style:none;
+	padding-left:0px;
+}
+#profile
+{
+	float:left!important
+}
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px!important;
+    border: 1px solid transparent;
+}
+.ui-menu-item
+{
+ background-color: white!important;
+ width: 129px;
+
+list-style-type: none;
+left: 517.5px!important; 
+
+}
+.ui-menu-item:hover {
+font-weight: bold;
+ background-color: blue!important;
+}
+.ui-widget-content{
+	width: 734px !important;
+	left: 518px !important;
+}
+.btn-lg, .btn-group-lg > .btn {
+    padding: 4px 18px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+ .select2-selection select2-selection--single
+{
+	background-color: white !important;
+    height: 37px !important;
+    width: 250px !important;
+    margin-top: -6px;
+}

@@ -1,0 +1,9 @@
+
+<select class="multipleSelect"  name="city_id" id='city_id' style="background-color: white; width:200px;">
+<option value="">--Select Your City--</option>
+	 <% @city.each do |c| %>
+			<option value="<%=c.id %>"><%= c.name %></option>
+	 <% end %> 
+</select>
+<select id='area_id' name="area_id" class="multipleSelect" style="background-color: white; width:200px;">  
+</select>

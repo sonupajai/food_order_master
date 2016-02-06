@@ -1,0 +1,40 @@
+<%= form_for(@menu_item) do |f| %>
+  <% if @menu_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@menu_item.errors.count, "error") %> prohibited this menu_item from being saved:</h2>
+
+      <ul>
+      <% @menu_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if @menu.present? %>
+   <div class="menu">  
+    <%= f.label :menu %><br>
+    <%= collection_select(:menu_item, :menu_id, @menu, :id, :Menu_name, {:prompt => true})
+    %>
+  <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :Item_name %><br>
+    <%= f.text_field :Item_name %>
+  </div>
+  <div class="field">
+    <%= f.label :Prize %><br>
+    <%= f.text_field :Prize %>
+  </div>
+  <div class="field">
+    <%= f.label :Description %><br>
+    <%= f.text_field :Description %>
+  </div>
+  <div class="field">
+    <%= f.label :quantity %><br>
+    <%= f.number_field :quantity %>
+  </div>
+ 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
