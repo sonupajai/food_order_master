@@ -7,17 +7,20 @@ $navbar-default-bg: #d9534f   ;
 @import "homes";
 @import "hotels";
 footer {
-background-color: #d33834;
- color: white !important;
-    
+    background-color: #d33834;
+    color: white !important;        
     font-weight: bold;
     font-family: serif;
- }
+}
 .intro { 
     color: white !important;
 }
 .container{
     min-height: 500px;
+}
+
+.min_div_height{
+    min-height: 550px;
 }
 
 .logo { 
@@ -34,7 +37,7 @@ background-color: #d33834;
 .menu_font
 {
 	color: white !important;
-	font-size: 1.3em;
+	font-size: 1.2em;
 }
 .jumbotron {
     margin-bottom: 0 !important;
