@@ -16,8 +16,8 @@ class Hotel
    
   #validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
-  def get_delivery_area_time(area_id)
-    DeliveryArea.where({ hotel_id: id, area_id: area_id }).first.try(:delivery_time)
+  def get_delivery_area_for_hotel(area_id)
+    DeliveryArea.where({ hotel_id: id, area_id: area_id }).try(:first)
   end
 end
 

@@ -5,7 +5,7 @@ $navbar-default-bg: #d9534f   ;
 @import "select2";
 @import "font-awesome";
 @import "homes";
-
+@import "hotels";
 footer {
 background-color: #d33834;
  color: white !important;
@@ -15,6 +15,9 @@ background-color: #d33834;
  }
 .intro { 
     color: white !important;
+}
+.container{
+    min-height: 500px;
 }
 
 .logo { 

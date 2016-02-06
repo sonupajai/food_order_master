@@ -21,44 +21,31 @@
               </div>
             </div>         
           <div class="row">
-           <div class="col-sm-3
-
-
-
-
-
-
-
-
-           ">
-              <span style=" opacity: 0.5;">Delivery in:</span> 
+           <div class="col-sm-3">
+              <span class="trans_span">Delivery in:</span> 
            </div>
             <div class="col-sm-3">
-              <span style=" opacity: 0.5;"> Delivery fee:</span>
+              <span class="trans_span"> Delivery fee:</span>
            </div>
             <div class="col-sm-3">
-              <span style=" opacity: 0.5;"> Min order:  </span>
+              <span class="trans_span"> Min order:  </span>
            </div>
           </div>
           <div class="row">
              <div class="col-sm-3">
-                 <%= hotel.get_delivery_area_time(@area_id) %>
+                 <%= hotel.get_delivery_area_for_hotel(@area_id).try(:delivery_time) %>
              </div>
               <div class="col-sm-3">
-                <%= DeliveryArea.where({ hotel_id: hotel.id, area_id: @area_id }).first.try(:delivery_charges) %>
-             </div>
+                <%= hotel.get_delivery_area_for_hotel(@area_id).try(:delivery_charge) %>            
+                </div>
               <div class="col-sm-3">
-                <%= DeliveryArea.where({ hotel_id: hotel.id, area_id: @area_id }).first.try(:min_order_amount) %>
+                <%= hotel.get_delivery_area_for_hotel(@area_id).try(:min_order_amount) %>
              </div>
           </div>
           </div>
           <div class="col-sm-4" >
-<a href="/restaurant/m6vb/cad-b-cad-m" class="btn btn-primary js-fire-click-tracking-event" data-event="clicked_restaurant" data-clicked_restaurant="m6vb" data-clicked_restaurant_status="open" data-clicked_restaurant_position="1" data-clicked_restaurant_sponsored="yes" data-clicked_restaurant_express="no">
-                                    Go to menu
-                        </a>
-          </div>
-      
-               
+              <a href="" class="btn btn-primary">Go to menu</a>
+          </div>               
       </div>
        <hr>  
 
