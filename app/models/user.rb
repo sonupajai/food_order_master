@@ -37,4 +37,10 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
   has_many :hotels
+
+  after_create :sending_welcome_email
+
+  def sending_welcome_email
+    UserNotifier.welcome_email(self).deliver
+  end
 end

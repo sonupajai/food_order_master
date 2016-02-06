@@ -12,17 +12,17 @@
       <div class="panel panel-warning" >
           <div class="panel-heading"> 
             <h3 class="panel-title"> 
-            <img width="100" height="50" src="<%=hotel.image.url %>" alt="Logo Image">  
-            <%= link_to hotel.name , hotel %>(<%= hotel.type %>)
+            <img width="100" height="50" src="<%=hotel.image.url %>" alt="Logo Image" class="img-thumbnail"> &nbsp 
+            <%= link_to hotel.name.capitalize , hotel %>(<%= hotel.type %>)
             <span style="float: right;">          
             <%= link_to '', edit_hotel_path(hotel), class: "fa fa-edit" %>
             <%= link_to '', hotel, class: "fa fa-times", method: :delete, data: { confirm: 'Are you sure?' } %></span>
             </h3>
           </div>
           <div class="panel-body">
-            <b> Speciality: </b><%= hotel.speciality %> <br>
+            <b> Speciality: </b><%= hotel.speciality %> <br/>
             <b> Address: </b><%= hotel.address %> <%= hotel.city.try(:name) %><br/>
-            <b><%= link_to 'Add Delivery Location', new_hotel_delivery_area_path(hotel) %>  </b>
+            <b><%= link_to 'Add Delivery Location', new_hotel_delivery_area_path(hotel), class: "label label-info" %>  </b>
           </div>         
       </div>    
   </div>
@@ -33,22 +33,4 @@
     <%= paginate @hotels %>
   </div>
 
-<table style="display:none">
- <tbody>
-    <% @hotels.each do |hotel| %>
-      <tr>
-        <td><%= hotel.name %></td>
-        <td><%= hotel.type %></td>
-        <td><%= hotel.city.try(:name) %></td>
-        <td><%= hotel.speciality %></td>
-        <td><%= hotel.address %></td>
-        <td><%= hotel.user.try(:email) %></td>
-        <td><%= link_to 'Show', hotel %></td>
-        <td><%= link_to 'Edit', edit_hotel_path(hotel) %></td>
-        <td><%= link_to 'Destroy', hotel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
 
