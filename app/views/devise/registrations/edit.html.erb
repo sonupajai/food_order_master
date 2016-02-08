@@ -48,14 +48,14 @@
       <%= f.submit "Update", class: 'btn btn-primary btn-lg' %>
     </div>
   </div>
-<% end %>
 
-  <h3 align="center">Cancel my account</h3>
-  <div class="form-group">
+  <h2 align="center">Cancel my account</h2>
+  <div class="form-group" align="center">
     <div class="control-label col-sm-2">
     </div>
     <div class="col-sm-8">
-      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p></br>
+      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p></br>
       <%= link_to "Back", :back %>
     </div>  
   </div>
+<% end %>
