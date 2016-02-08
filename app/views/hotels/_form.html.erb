@@ -1,15 +1,6 @@
-<div class="container">
-<%= form_for(@hotel, :html => {:class => 'form-horizontal'}) do |f| %>
-  <% if @hotel.errors.any? %>
-    <div id="error_explanation">
-    <h2><%= pluralize(@hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
-      <ul>
-      <% @hotel.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+
+  <%= form_for(@hotel, :html => {:class => 'form-horizontal'}) do |f| %>
+  <div class="container">
     <div class="form-group">
       <%= f.label :Restaurant_Image , class:"control-label col-xs-2"%>
       <% if action_name == 'edit' then %>    
@@ -57,13 +48,13 @@
     </div>
     <div class="form-group">        
       <center>
-      <div class="col-sm-offset-2 col-sm-10">
-        <div class="actions">
-          <%= f.submit "Save", class: 'btn btn-outline btn-success'%>
-          <%= link_to 'Back', hotels_path, class: 'btn btn-outline btn-success' %>
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="actions">
+            <%= f.submit "Save", class: 'btn btn-outline btn-success'%>
+            <%= link_to 'Back', hotels_path, class: 'btn btn-outline btn-success' %>
+          </div>
         </div>
-      </div>
       </center>
     </div>
-<% end %>
 </div>
+<% end %>

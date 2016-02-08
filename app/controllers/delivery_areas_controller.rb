@@ -1,52 +1,40 @@
 class DeliveryAreasController < ApplicationController
   before_action :set_delivery_area, only: [:show, :edit, :update, :destroy]
-   before_action :set_city, only: [:new, :create]
-  def index
-    @delivery_areas = DeliveryArea.all
-
-  end
-
+  before_action :set_city, only: [:new, :create,:edit,:update]
+  before_action :set_hotel, only: [:new, :create,:edit,:update]
+ 
   def show
   end
-
   def new   
-    @hotel = Hotel.find(params[:hotel_id])
     @delivery_area = DeliveryArea.new
-    @city=City.all
   end
-
-  # GET /delivery_areas/1/edit
+ 
   def edit
   end
   def create
     area_arr=params[:area_id]
-    if area_arr.nil?
-    else
-      area_arr.each do |id|
+    area_arr.each do |id|
       @delivery_area = DeliveryArea.new(delivery_area_params)
       @delivery_area.area_id = id
       @delivery_area.hotel_id = params[:hotel_id]
       area = Area.find(id)
       area.hotels << Hotel.find(params[:hotel_id])
-      area.save!      
-    end  
-
-    respond_to do |format|
-      if @delivery_area.save
-        format.html { redirect_to hotels_path, notice: 'Delivery area was successfully created.' }
-        format.json { render :show, status: :created, location: @delivery_area }
-      else
-        format.html { render :new }
-        format.json { render json: @delivery_area.errors, status: :unprocessable_entity }
+      area.save! 
+      respond_to do |format|
+        if @delivery_area.save
+          format.html { redirect_to hotels_path, notice: 'Delivery area was successfully created.' }
+          format.json { render :show, status: :created, location: @delivery_area }
+        else
+          format.html { render :new }
+          format.json { render json: @delivery_area.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
-  end
-
   def update
     respond_to do |format|
       if @delivery_area.update(delivery_area_params)
-        format.html { redirect_to @delivery_area, notice: 'Delivery area was successfully updated.' }
+        format.html { redirect_to @hotels_path, notice: 'Delivery area was successfully updated.' }
         format.json { render :show, status: :ok, location: @delivery_area }
       else
         format.html { render :edit }
@@ -54,7 +42,6 @@ class DeliveryAreasController < ApplicationController
       end
     end
   end
-
   # DELETE /deliv# DELETE /hotelreas/1.json
   def destroy
     @delivery_area.destroy
@@ -71,6 +58,9 @@ class DeliveryAreasController < ApplicationController
     end
     def set_city
       @city=City.all
+    end
+    def set_hotel
+      @hotel = Hotel.find(params[:hotel_id])
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def delivery_area_params
