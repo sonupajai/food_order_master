@@ -7,12 +7,12 @@
       <span class="icon-bar"></span>
     </button>    
   </div>
-  <a class="navbar-brand logo" href="#">FoodCorner</a>
+  <%= link_to "Food Corner", root_path, class: "navbar-brand logo" %>
+  <!--a class="navbar-brand logo" href="#">FoodCorner</a-->
   <div class="navbar-collapse collapse">   
     <ul class="nav navbar-nav navbar-right">  
-      
+    <% if user_signed_in? %>  
     <li><%= link_to "Restaurants", hotels_path , class: "menu_font"%></li>
-      <li><%= link_to "Sign_in", new_user_session_path , class: " menu_font"%></li>
     <li><a href="#" >
           <span class="glyphicon glyphicon-question-sign" style="color: white;"> 
         </a>
@@ -43,11 +43,14 @@
         <a href="#" class="dropdown-toggle menu_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
         <ul class="dropdown-menu ">
           <li><a href="#">My Profile</a></li>
-          <li><a href="<%= new_user_password_path %>">Change Password</a></li>
+          <li><%= link_to 'Change Password', edit_user_registration_path %></li>
           <li role="separator" class="divider"></li>
            <li><%= link_to 'Sign Out', destroy_user_session_path, method: 'delete' %></li>
         </ul>
       </li>
+      <% else %>
+        <li><%= link_to "Log in or Sign up", new_user_session_path , class: " menu_font"%></li>
+      <% end %>
     </ul>
   </div>
 </nav>
