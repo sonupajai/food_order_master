@@ -1,9 +1,9 @@
 <ol class = "breadcrumb">
    <li><a href ="<%=root_path %>">Home</a></li>
-   <li><a href = "active">Hotels </a></li>
+   <li class="active">Restaurants</li>
 </ol>
 <p id="notice"><%= notice %></p>
-<%= link_to 'New Hotel', new_hotel_path, {:style=>'margin-left: 218px;', :class=>'btn btn-danger'} %>
+<%= link_to 'Add+', new_hotel_path, {:style=>'margin-left: 218px;', :class=>'btn btn-danger'} %>
 <br><br>
 <% @hotels.each do |hotel| %>
 <div class="row">

@@ -1,4 +1,5 @@
 <!%= autocomplete_field_tag 'city', '', autocomplete_city_name_homes_path%>
+<!%= javascript_include_tag "get_area_from_city.js" %>
 <%= render "shared/ajax_call_area" %>
 <script >	
 	$( document ).ready(function() {
