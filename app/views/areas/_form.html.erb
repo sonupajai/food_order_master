@@ -1,12 +1,13 @@
 <%= form_for(@area) do |f| %>
-  <%= render'shared/error_messages', ref_obj: @city %>
+  <%= render'shared/error_messages', ref_obj: @area %>
+<%= f.label :City %>
   <%= collection_select(:area, :city_id, @cities, :id, :name, {:prompt => true}) %>
     <div class="field">
-      <%= f.label :name %><br>
+      <%= f.label :Location_Name %><br>
       <%= f.text_field :name %>
     </div>
     <div class="field">
-      <%= f.label :pincode %><br>
+      <%= f.label :Pincode %><br>
       <%= f.text_field :pincode %>
     </div>
     <div class="actions">

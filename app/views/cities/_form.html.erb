@@ -1,8 +1,7 @@
 
-<%= form_for @city, remote: true, html: { style: "display:inline;" } do |f| %>
-	
+<%= form_for @city, remote: true, html: { style: "display:inline;" } do |f| %>	
 	  	<div class="form-group">	       
-	        <%= f.label :City, class:"control-label col-xs-1" %>
+	        <%= f.label :City_Name, class:"control-label col-sm-1", style:"padding-right: 13px;" %>
 	        <div class="col-xs-5">   
 			   <%= f.text_field :name, class:"form-control" %>
 			</div>

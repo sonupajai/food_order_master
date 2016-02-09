@@ -6,14 +6,17 @@
       <span class="icon-bar"></span>
     </button>    
   </div>
-  <%= link_to "Food Corner", root_path, class: "navbar-brand logo" %>
-  <!--a class="navbar-brand logo" href="#">FoodCorner</a-->
+  <%= link_to "Food Corner",root_path, class: "navbar-brand logo" %>
   <div class="navbar-collapse collapse">   
-    <ul class="nav navbar-nav navbar-right">        
-    <% if user_signed_in? %>  
+    <ul class="nav navbar-nav navbar-right">    
+      <li>
+        <a href="#" data-toggle="tooltip" title="Help?"> 
+          <span class="glyphicon glyphicon-question-sign" style="color: white;">
+          </span>
+        </a>
+      </li>         
+      <% if user_signed_in? %>  
       <li><%= link_to "Restaurants",hotels_path ,class: "menu_font"%></li>
-      <li><a href="#" > <span class="glyphicon glyphicon-question-sign" style="color: white;"></a>
-      </li> 
       <li class="dropdown notifications-menu" >
         <a href="javascript:void(0);" class="dropdown-toggle astro-notification" data-toggle="dropdown">
           <i class="fa fa-bell-o"style="color: white;" style="color: white;"></i>
@@ -21,17 +24,19 @@
           <span class="label label-danger notification-count"></span>
         </a>
         <ul class="dropdown-menu">
-          <li class="header">You have <span id="total_notification">5</span>  notifications</li>
+          <li class="header">You have <span id="total_notification">   5</span>  notifications</li>
           <li>
-          <ul class="menu" id="list_notification">           
-            <li>
-              <a href="javascript:void(0);" >
-                Nitish Gupta @ 10:00 AM.
-              </a>
-            </li>            
-          </ul>
+            <ul class="menu" id="list_notification">           
+              <li>
+                <a href="javascript:void(0);" >
+                  Nitish Gupta @ 10:00 AM.
+                </a>
+              </li>            
+            </ul>
           </li>
-          <li class="footer"><a href="javascript:void(0);">View all</a></li>
+          <li class="footer">
+            <a href="javascript:void(0);">View all</a>
+          </li>
         </ul>
       </li> 
       <li class="dropdown" id="profile" style="float:right!important">
@@ -47,7 +52,7 @@
         </ul>
       </li>
       <% else %>
-        <li><%= link_to "Log in or Sign up", new_user_session_path , class: " menu_font"%></li>
+        <li><%= link_to "Sign in", new_user_session_path , class: " menu_font"%></li>
       <% end %>
     </ul>
   </div>

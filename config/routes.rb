@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :hotels do
     resources :delivery_areas
   end
-  resources :cities
+  resources :cities do
+  get "delete"
+  end
   resources :areas
   devise_for :users
   resources :homes do
