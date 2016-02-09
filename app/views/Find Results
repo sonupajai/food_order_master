@@ -1,0 +1,17 @@
+Searching 73 files for "<<<<<<<"
+
+/home/amura/food_order_master/app/views/delivery_areas/_form.html.erb:
+    1  
+    2  <%= render "shared/ajax_call_area" %>
+    3
+    4    <div class="container">
+    5    <%= render'shared/error_messages', ref_obj: @delivery_area %>
+
+/home/amura/food_order_master/app/views/layouts/_navigation.html.erb:
+   10    <!--a class="navbar-brand logo" href="#">FoodCorner</a-->
+   11    <div class="navbar-collapse collapse">   
+   12:
+   13      <ul class="nav navbar-nav navbar-right">        
+   14        <li><%= link_to "Restaurants",hotels_path ,class: "menu_font"%></li>
+
+2 matches across 2 files

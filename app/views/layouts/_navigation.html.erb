@@ -9,19 +9,10 @@
   <%= link_to "Food Corner", root_path, class: "navbar-brand logo" %>
   <!--a class="navbar-brand logo" href="#">FoodCorner</a-->
   <div class="navbar-collapse collapse">   
-<<<<<<< HEAD
     <ul class="nav navbar-nav navbar-right">        
-      <li><%= link_to "Restaurants",hotels_path ,class: "menu_font"%></li>
-      <li><%= link_to "Sign_in", new_user_session_path , class: " menu_font"%> </li>
-      <li><a href="#" > <span class="glyphicon glyphicon-question-sign" style="color: white;"></a>
-=======
-    <ul class="nav navbar-nav navbar-right">  
     <% if user_signed_in? %>  
-    <li><%= link_to "Restaurants", hotels_path , class: "menu_font"%></li>
-    <li><a href="#" >
-          <span class="glyphicon glyphicon-question-sign" style="color: white;"> 
-        </a>
->>>>>>> ac6eb0a3f22fee2782630ff20acd6ae0e5c38838
+      <li><%= link_to "Restaurants",hotels_path ,class: "menu_font"%></li>
+      <li><a href="#" > <span class="glyphicon glyphicon-question-sign" style="color: white;"></a>
       </li> 
       <li class="dropdown notifications-menu" >
         <a href="javascript:void(0);" class="dropdown-toggle astro-notification" data-toggle="dropdown">
