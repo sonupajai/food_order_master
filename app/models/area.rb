@@ -7,5 +7,5 @@ class Area
   has_and_belongs_to_many :hotels
   validates :city_id, presence: true
   validates :name, :pincode, presence: true, uniqueness: true
-  validates :pincode, length: { is: 6 }
+ # validates :pincode, length: { is: 6 }
 end
