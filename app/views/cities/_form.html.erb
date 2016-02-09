@@ -1,23 +1,16 @@
-<%= form_for(@city) do |f| %>
-	<%= render'shared/error_messages', ref_obj: @city %>
-	<div class="form-horizontal"> 
+
+<%= form_for @city, remote: true, html: { style: "display:inline;" } do |f| %>
+	
 	  	<div class="form-group">	       
-	        <%= f.label :City_Name, class:"control-label col-xs-2" %>
+	        <%= f.label :City, class:"control-label col-xs-1" %>
 	        <div class="col-xs-5">   
 			   <%= f.text_field :name, class:"form-control" %>
 			</div>
 			<div class="col-xs-5">   
 			   <div class="actions">
-					<%= f.submit "Save", class: 'btn btn-outline btn-success' %>
-				</div>>
-			</div>
-		</div>
-		<div class="form-group">        
-         	<center>
-          		<div class="col-sm-7">
-					
+				<%= f.submit "Save", class: 'btn btn-outline btn-success' %>
 				</div>
-			</center>
-		</div>
-	</div>
+			</div>
+		</div><br/><br/>
+	
 <% end %>

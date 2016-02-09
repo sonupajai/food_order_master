@@ -1,0 +1,7 @@
+<% @cities.each do |city| %>
+  <tr>
+    <td><%= city.name %></td>
+    <td><%= link_to 'Edit', edit_city_path(city,format: 'js'), class: "btn btn-default" %></td>
+    <td><%= link_to 'Delete', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
