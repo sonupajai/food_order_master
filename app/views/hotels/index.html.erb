@@ -22,7 +22,8 @@
           <div class="panel-body">
             <b> Speciality: </b><%= hotel.speciality %> <br/>
             <b> Address: </b><%= hotel.address %> <%= hotel.city.try(:name) %><br/>
-            <b><%= link_to 'Add Delivery Location', new_hotel_delivery_area_path(hotel), class: "label label-info" %>  </b>
+            <b><%= link_to 'Add Delivery Location +', new_hotel_delivery_area_path(hotel), class: "label label-info" %>  </b>
+            <b><%= link_to 'Add Menu +',  new_hotel_menu_path(hotel), class: "label label-info" %>  </b>
           </div>         
       </div>    
   </div>

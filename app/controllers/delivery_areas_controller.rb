@@ -1,6 +1,7 @@
 class DeliveryAreasController < ApplicationController
   before_action :set_delivery_area, only: [:show, :edit, :update, :destroy]
    before_action :set_city, only: [:new, :create]
+   before_action :set_hotel, only:[:new, :create, :update, :destroy]
   def index
     @delivery_areas = DeliveryArea.all
 
@@ -10,7 +11,6 @@ class DeliveryAreasController < ApplicationController
   end
 
   def new   
-    @hotel = Hotel.find(params[:hotel_id])
     @delivery_area = DeliveryArea.new
     @city=City.all
   end
@@ -71,6 +71,9 @@ class DeliveryAreasController < ApplicationController
     end
     def set_city
       @city=City.all
+    end
+    def set_hotel
+      @hotel = Hotel.find(params[:hotel_id])
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def delivery_area_params
