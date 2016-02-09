@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   root 'homes#index'
 
   resources :menu_items
-  resources :menus
   resources :hotels do
     resources :delivery_areas
+    resources :menus
   end
   resources :cities do
   get "delete"
