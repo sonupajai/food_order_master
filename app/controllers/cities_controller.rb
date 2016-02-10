@@ -16,6 +16,7 @@ class CitiesController < ApplicationController
 
   def update
     @city.update(city_params)
+    @city = City.new
   end
 
   def destroy
@@ -28,6 +29,9 @@ class CitiesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def new_city
+
+    end
     def set_city
       @city = City.find(params[:id])
     end
