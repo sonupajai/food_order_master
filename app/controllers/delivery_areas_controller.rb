@@ -1,10 +1,15 @@
 class DeliveryAreasController < ApplicationController
-  before_action :set_delivery_area, only: [:show, :edit, :update, :destroy]
-  before_action :set_city, only: [:new, :create,:edit,:update]
-  before_action :set_hotel, only: [:new, :create,:edit,:update]
- 
+   before_action :set_delivery_area, only: [:show, :edit, :update, :destroy]
+   before_action :set_city, only: [:new, :create]
+   before_action :set_hotel, only:[:new, :create, :update, :destroy]
+  def index
+    @delivery_areas = DeliveryArea.all
+
+  end
+
   def show
   end
+
   def new   
     @delivery_area = DeliveryArea.new
   end

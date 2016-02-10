@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Menu name:</strong>
-  <%= @menu.Menu_name %>
+  <strong>Name:</strong>
+  <%= @menu.name %>
 </p>
 
 <p>
   <strong>Description:</strong>
   <%= @menu.description %>
+</p>
+
+<p>
+  <strong>Hotel:</strong>
+  <%= @menu.hotel_id %>
 </p>
 
 <%= link_to 'Edit', edit_menu_path(@menu) %> |

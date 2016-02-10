@@ -1,23 +1,21 @@
 <%= render'shared/error_messages', ref_obj: @city %>
 <div class="container"> 
-  <br/>  
+  <br/> 
+  <ul id="ul_errors"></ul> 
   <div class="new-city">
     <%= render 'form' %>
-  </div>
-  <ul id="ul_errors"></ul>
+  </div> 
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th>City Name</th>
-        <td>Update</td>
-        <td>Delete</td>
+        <td></td>
+        <td></td>
       </tr>
     </thead>
     <tbody class="city-index">
       <%= render "index" %>
     </tbody>
   </table>
-  <div id="city-modal" class="modal fade">
-  
-</div>
+  <div id="city-modal" class="modal fade"></div>
 </div>

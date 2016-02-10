@@ -4,7 +4,6 @@ $("#city_name").html("")
     	$("#ul_errors").append($("<li />").html("<%= message.html_safe %>"))
 	<% end %>
 <% else %>
-
 	$(".new-city").html("<%= escape_javascript(render 'form') %>")
-	$("#city_name").val("<%=  @city.name %>")
+
 <% end %>
