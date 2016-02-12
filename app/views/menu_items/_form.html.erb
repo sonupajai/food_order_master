@@ -1,29 +1,10 @@
-<%= form_for(@menu_item) do |f| %>
- <%= render'shared/error_messages', ref_obj: @menu_item %>
-  <% if @menu.present? %>
-   <div class="menu">  
-    <%= f.label :menu %><br>
-    <%= collection_select(:menu_item, :menu_id, @menu, :id, :Menu_name, {:prompt => true})
-    %>
-  <% end %>
+<%= simple_form_for(@menu_item) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
   </div>
-  <div class="field">
-    <%= f.label :Item_name %><br>
-    <%= f.text_field :Item_name %>
-  </div>
-  <div class="field">
-    <%= f.label :Prize %><br>
-    <%= f.text_field :Prize %>
-  </div>
-  <div class="field">
-    <%= f.label :Description %><br>
-    <%= f.text_field :Description %>
-  </div>
-  <div class="field">
-    <%= f.label :Quantity %><br>
-    <%= f.number_field :quantity %>
-  </div> 
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
   </div>
 <% end %>

@@ -1,5 +1,5 @@
-	source 'https://rubygems.org'
-source 'http://gems.github.com'
+source 'https://rubygems.org'
+# source 'http://gems.github.com'
 
 gem 'mongoid', github: "mongoid/mongoid"
 gem 'bson_ext'
@@ -18,6 +18,8 @@ gem "font-awesome-rails"
 gem "select2-rails"
 
 gem 'kaminari'
+
+gem 'remotipart'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -25,7 +27,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem "jquery-ui-rails"
 gem 'rails4-autocomplete'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
+gem 'simple_form'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
