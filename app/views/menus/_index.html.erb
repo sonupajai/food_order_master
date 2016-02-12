@@ -1,0 +1,10 @@
+<% @menus.each do |menu| %>
+      <tr>
+      	<td ></td>
+      	<td><img width="100" height="50" src="<%= menu.image.url %>" alt="Logo Image" class="img-thumbnail">
+        </td>
+        <td><%= menu.name %></td>
+        <td><%= link_to "<i class='glyphicon glyphicon-pencil'></i> Edit".html_safe, edit_hotel_menu_path(@hotel, menu), remote: true %></td>
+        <td><%= link_to "<i class='glyphicon glyphicon-remove'></i> Delete".html_safe, hotel_menu_path(@hotel, menu), method: :delete, :class =>"delete_#{menu.id}", :confirm => 'Are you sure?', :title => "Remove Menu", :remote => :true %> </td>
+      </tr>
+<% end %>
