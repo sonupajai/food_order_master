@@ -1,19 +1,4 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @menu.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @menu.description %>
-</p>
-
-<p>
-  <strong>Hotel:</strong>
-  <%= @menu.hotel_id %>
-</p>
-
-<%= link_to 'Edit', edit_menu_path(@menu) %> |
-<%= link_to 'Back', menus_path %>
+<%= link_to 'Edit', edit_menu_category_path(@menu_category) %> |
+<%= link_to 'Back', menu_categories_path %>

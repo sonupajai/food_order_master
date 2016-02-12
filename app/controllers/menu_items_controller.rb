@@ -1,5 +1,4 @@
 class MenuItemsController < ApplicationController
-  before_action :set_menu, only: [:edit, :new, :create, :update]
   before_action :set_menu_item, only: [:show, :edit, :update, :destroy]
 
   # GET /menu_items
@@ -20,13 +19,13 @@ class MenuItemsController < ApplicationController
 
   # GET /menu_items/1/edit
   def edit
-    
   end
 
   # POST /menu_items
   # POST /menu_items.json
   def create
     @menu_item = MenuItem.new(menu_item_params)
+
     respond_to do |format|
       if @menu_item.save
         format.html { redirect_to @menu_item, notice: 'Menu item was successfully created.' }
@@ -67,12 +66,9 @@ class MenuItemsController < ApplicationController
     def set_menu_item
       @menu_item = MenuItem.find(params[:id])
     end
-    def set_menu
-       @menu = Menu.all
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_item_params
-      params.require(:menu_item).permit(:Item_name, :Prize, :Description, :quantity, :menu_id)
+      params[:menu_item]
     end
 end

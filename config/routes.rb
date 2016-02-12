@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  resources :menu_items
+  resources :menu_categories
   root 'homes#index'
 
-  resources :menu_items
   resources :hotels do
     resources :delivery_areas
     resources :menus
   end
+
   resources :cities do
   get "delete"
   end
