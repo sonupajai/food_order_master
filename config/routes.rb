@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :menu_items
   resources :hotels do
-    resources :delivery_areas
+    resources :delivery_areas do
+       get "delete"
+    end
     resources :menus
   end
   resources :cities do

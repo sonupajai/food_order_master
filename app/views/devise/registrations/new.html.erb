@@ -1,11 +1,17 @@
+<ol class = "breadcrumb">
+   <li><a href ="<%=root_path %>">Home</a></li>
+   <li class="active"><b>Sign up</b></li>
+</ol>
+<div class="container">
 <h2 align="center">Sign up</h2>
 
 <%= form_for(resource, as: resource_name, html: {class: "form-horizontal", role: "form"}, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="form-group">
+  
     <div class="control-label col-sm-2">
-      <%= f.label :email %>
+      <%= f.label :Email %>
     </div>
     <div class="col-sm-8">
       <%= f.email_field :email, class: "form-control", autofocus: true %>
@@ -20,7 +26,7 @@
       <% end %><br/>  
     </div>
     <div class="col-sm-8">
-      <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+      <%= f.password_field :Password, class: "form-control", autocomplete: "off" %>
     </div>
   </div>
 
@@ -34,10 +40,12 @@
   </div>
 
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit "Sign up",class: 'btn btn-primary btn-lg' %></br></br>
+    <div class="col-sm-offset-2 col-sm-8">
+      <center><%= f.submit "Sign up",class: "btn btn-primary btn-lg" %><br/><br>
+  
       <%= render "devise/shared/links" %>
+      </center>
     </div>
   </div>
 <% end %>
-
+</div>

@@ -1,0 +1,9 @@
+$("#city_name").html("")
+<% if @delivery_area.errors.any? %>
+  	<% @delivery_area.errors.full_messages.each do |message| %>
+    	$("#ul_errors").append($("<li />").html("<%= message.html_safe %>"))
+	<% end %>
+<% else %>
+	$(".new-dl-area").html("<%= escape_javascript(render 'form') %>")
+	$(".multipleSelect").select2(); 
+<% end %>
