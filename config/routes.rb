@@ -9,10 +9,13 @@ Rails.application.routes.draw do
   end
 
   resources :cities do
-  get "delete"
+    get "delete"
   end
-  resources :areas
+  resources :areas do
+    get "delete"
+  end
   devise_for :users
+  
   resources :homes do
     get :autocomplete_city_name, :on => :collection
     get :hotel_list, :on => :collection

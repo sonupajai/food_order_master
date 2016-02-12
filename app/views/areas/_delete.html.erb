@@ -1,14 +1,14 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
-      <h3>Delete City</h3>
+      <h3>Delete Area</h3>
     </div>
     <div class="modal-body">
       <ul class="errors"></ul>
-      Are you sure you wish to delete <b><%= @city.name %> City</b>?
+      Are you sure you wish to delete <b><%= @area.name %> </b>?
     </div>
     <div class="modal-footer">
-      <%= link_to "Yes, Delete This City", city_path(@city), method: :delete, remote: true, class: "btn btn-danger", data: { dismiss: "modal" } %>
+      <%= link_to "Yes, Delete This Location", area_path(@area), method: :delete, remote: true, class: "btn btn-danger", data: { dismiss: "modal" } %>
       <%= link_to "Cancel", "#", class: "btn btn-default", data: { dismiss: "modal" } %>
     </div>
   </div>
