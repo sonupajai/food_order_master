@@ -1,6 +1,9 @@
-<p id="notice"><%= notice %></p>
- <div class="container"> 
-
+<ol class = "breadcrumb">
+   <li><a href ="<%=root_path %>">Home</a></li>
+   <li class="active"><b>Location</b></li>
+</ol>
+<div class="container"> 
+  <p id="notice"><%= notice %></p>
   <%= link_to 'Add+', new_area_path,remote:true, class: 'btn btn-outline btn-danger' %><br/><br/>
   <table class="table table-bordered table-striped">
     <thead>

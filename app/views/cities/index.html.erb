@@ -1,6 +1,9 @@
-<%= render'shared/error_messages', ref_obj: @city %>
-<div class="container"> 
-  <br/> 
+<ol class = "breadcrumb">
+   <li><a href ="<%=root_path %>">Home</a></li>
+   <li class="active"><b>City</b></li>
+</ol>
+<div class="container"> <br/> 
+  <%= render'shared/error_messages', ref_obj: @city %>
   <ul id="ul_errors"></ul> 
   <div class="new-city">
     <%= render 'form' %>
@@ -8,9 +11,10 @@
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th>City Name</th>
-        <td></td>
-        <td></td>
+        <th colspan="2">City Name </th>
+      
+        <th>  </th>
+        <th> </th>
       </tr>
     </thead>
     <tbody class="city-index">

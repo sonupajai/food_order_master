@@ -1,0 +1,12 @@
+<% @delivery_areas.each do |delivery_area| %>
+  <tr>
+    <td><%= delivery_area.area.try(:name)%></td>
+    <td><%= delivery_area.delivery_time %></td>
+    <td><%= delivery_area.delivery_charges %></td>
+    <td><%= delivery_area.min_order_amount %></td>
+    <td><%= link_to '', edit_hotel_delivery_area_path(@hotel,delivery_area,format: 'js'), remote:true, class: "fa fa-edit" %>
+   	</td>
+   	<td><%= link_to "", hotel_delivery_area_delete_path(@hotel,delivery_area), remote: true, class: "fa fa-times" %>
+	</td>
+  </tr>
+<% end %>

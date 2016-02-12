@@ -9,6 +9,4 @@ class DeliveryArea
   belongs_to :city
   belongs_to :hotel
   belongs_to :area
-
-  
 end

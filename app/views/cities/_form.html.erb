@@ -1,18 +1,17 @@
-
 <%= form_for @city, remote: true, html: { style: "display:inline;" } do |f| %>	
-	  	<div class="form-group">	       
-	        <%= f.label :City_Name, class:"control-label col-sm-1", style:"padding-right: 13px;" %>
-	        <div class="col-xs-5">   
-			   <%= f.text_field :name, class:"form-control" %>
-			</div>
-			<div class="col-xs-5">   
-			   <div class="actions">
-			   <% if action_name == 'edit' then %> 
-				<%= f.submit "Update", class: 'btn btn-outline btn-success' %>
+  	<div class="form-group">	       
+        <%= f.label :City_Name, class:"control-label col-sm-1", style:"padding-right: 13px;" %>
+        <div class="col-xs-5">   
+		   <%= f.text_field :name, class:"form-control" %>
+		</div>
+		<div class="col-xs-5">   
+		    <div class="actions">
+			    <% if action_name == 'edit' then %> 
+					<%= f.submit "Update", class: 'btn btn-outline btn-success' %>
 				<% else %>
-				<%= f.submit "Save", class: 'btn btn-outline btn-success' %>
+					<%= f.submit "Save", class: 'btn btn-outline btn-success' %>
 				<% end %>
-				</div>
 			</div>
-		</div><br/><br/>	
+		</div>
+	</div><br/><br/>	
 <% end %>
