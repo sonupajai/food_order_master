@@ -1,4 +1,4 @@
-json.array!(@menu_categories) do |menu_category|
-  json.extract! menu_category, :id
-  json.url menu_category_url(menu_category, format: :json)
+json.array!(@menus) do |menu|
+  json.extract! menu, :id, :name, :hotel_id
+  json.url menu_url(menu, format: :json)
 end

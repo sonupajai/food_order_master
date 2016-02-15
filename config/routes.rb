@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-  resources :menu_items
-  resources :menu_categories
   root 'homes#index'
 
   resources :hotels do
-    resources :delivery_areas do
-       get "delete"
+    resources :delivery_areas
+    resources :menus do
+      resources :menu_items
     end
-    resources :menus
   end
 
   resources :cities do
@@ -17,7 +15,7 @@ Rails.application.routes.draw do
     get "delete"
   end
   devise_for :users
-  
+
   resources :homes do
     get :autocomplete_city_name, :on => :collection
     get :hotel_list, :on => :collection

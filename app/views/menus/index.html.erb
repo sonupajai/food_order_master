@@ -1,4 +1,21 @@
 <div class="container">
+<br/>
+  <div class="new-menu">
+    <%= render 'form' %>
+  </div>
+  <ul id="ul_errors"></ul>
+  <table class="table table-bordered table-striped ">
+    <thead>
+      <tr>
+        <th>Menu</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
 
-
+    <tbody id="menu_view">
+      <%= render "index" %>
+    </tbody>
+  </table>
+  <div id="add_menu" class="modal fade"></div>
 </div>
