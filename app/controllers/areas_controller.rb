@@ -1,7 +1,7 @@
 class AreasController < ApplicationController
   before_action :set_city, only: [:index,:edit, :new, :create, :update]
   before_action :set_area, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @areas = Area.all
     @area = Area.new
@@ -33,8 +33,9 @@ class AreasController < ApplicationController
     @areas = Area.all
     @area = Area.new
   end
-   def delete
-   @area = Area.find(params[:area_id])
+
+  def delete
+    @area = Area.find(params[:area_id])
   end
 
   private
@@ -45,7 +46,7 @@ class AreasController < ApplicationController
     def set_city
         @cities = City.all
     end
-    
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def area_params
       params.require(:area).permit(:name, :pincode, :city_id)

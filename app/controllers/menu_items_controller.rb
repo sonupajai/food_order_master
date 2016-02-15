@@ -1,4 +1,5 @@
 class MenuItemsController < ApplicationController
+  before_action :set_hotel
   before_action :set_menu_item, only: [:show, :edit, :update, :destroy]
 
   # GET /menu_items
@@ -28,7 +29,7 @@ class MenuItemsController < ApplicationController
 
     respond_to do |format|
       if @menu_item.save
-        format.html { redirect_to @menu_item, notice: 'Menu item was successfully created.' }
+        format.html { redirect_to @hotel_menu_item, notice: 'Menu item was successfully created.' }
         format.json { render :show, status: :created, location: @menu_item }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class MenuItemsController < ApplicationController
   def update
     respond_to do |format|
       if @menu_item.update(menu_item_params)
-        format.html { redirect_to @menu_item, notice: 'Menu item was successfully updated.' }
+        format.html { redirect_to @hotel_menu_item, notice: 'Menu item was successfully updated.' }
         format.json { render :show, status: :ok, location: @menu_item }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class MenuItemsController < ApplicationController
   def destroy
     @menu_item.destroy
     respond_to do |format|
-      format.html { redirect_to menu_items_url, notice: 'Menu item was successfully destroyed.' }
+      format.html { redirect_to hotel_menu_items_url, notice: 'Menu item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +66,10 @@ class MenuItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_menu_item
       @menu_item = MenuItem.find(params[:id])
+    end
+
+    def set_hotel
+      @hotel = Hotel.find(params[:hotel_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
