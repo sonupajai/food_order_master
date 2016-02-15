@@ -1,8 +1,7 @@
 class MenusController < ApplicationController
   before_action :set_hotel
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
-  # GET /menus
-  # GET /menus.json
+
   def index
     @menus = @hotel.menus.all
     @menu = Menu.new
@@ -58,6 +57,6 @@ class MenusController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_params
-      params.require(:menu).permit(:name, :description, :image, :menu_categories_id)
+      params.require(:menu).permit(:name, :image)
     end
 end

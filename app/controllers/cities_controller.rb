@@ -1,7 +1,7 @@
 class CitiesController < ApplicationController
   before_action :set_city, only: [:show, :edit, :update, :destroy]
   before_action :set_all_city, only: [ :index, :create, :update, :destroy]
-  after_update :one_more_method_only_for_updates
+
   def index
      @city = City.new
   end
@@ -42,7 +42,5 @@ class CitiesController < ApplicationController
     def city_params
       params.require(:city).permit(:name)
     end
-    def one_more_method_only_for_updates
-      @city = City.new
-    end
+    
 end

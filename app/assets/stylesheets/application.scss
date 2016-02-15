@@ -7,11 +7,23 @@ $navbar-default-bg: #d9534f   ;
 @import "homes";
 @import "hotels";
 
+body{
+    overflow-x:hidden;
+}
+
 .fa-times
 {
     color:red !important;
 }
-
+#sidebar-wrapper
+{
+    background-color: #f5f5f5 !important;
+    color:black;
+}
+.side_head
+{
+    color: black!important;
+}
 .badge{
     
         margin-top: -16px;
