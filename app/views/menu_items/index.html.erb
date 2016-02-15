@@ -1,25 +1,26 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Menu Items</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @menu_items.each do |menu_item| %>
+<ol class = "breadcrumb">
+   <li><a href ="<%= hotel_menus_path(@hotel) %>">Menu</a></li>
+   <li class="active"><b>Menu Item</b></li>
+</ol>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <%= link_to 'Add+', new_hotel_menu_menu_item_path(@hotel, @menu),remote:true, class: 'btn btn-outline btn-danger' %><br/><br/>
+  <table class="table table-bordered table-striped">
+    <thead>
       <tr>
-        <td><%= link_to 'Show', menu_item %></td>
-        <td><%= link_to 'Edit', edit_menu_item_path(menu_item) %></td>
-        <td><%= link_to 'Destroy', menu_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Description</th>
+        <th>Discounted Price</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody class="menuitem-index">
+      <%= render "index" %>
+    </tbody>
+  </table>
+  <div id="menuitem-modal" class="modal fade">
 
-<br>
-
-<%= link_to 'New Menu item', new_hotel_menu_item_path %>
+  </div>
+</div>

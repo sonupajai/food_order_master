@@ -1,0 +1,11 @@
+<% @menu_items.each do |menu_item| %>
+  <tr>
+  	<td><%= menu_item.name %></td>
+    <td><%= menu_item.price %></td>
+    <td><%= menu_item.quantity %></td>
+    <td><%= menu_item.description %></td>
+    <td><%= menu_item.discount %></td>
+    <td><%= link_to '', edit_hotel_menu_menu_item_path(@hotel, @menu, menu_item, format: 'js'), remote:true, class: "fa fa-edit" %></td>
+    <td><%= link_to "", hotel_menu_menu_item_path(@hotel, @menu, menu_item), method: :delete, data: { confirm: 'Are you sure?' } , :title => "Remove Menu", remote: true, class: "fa fa-times delete_icon" %></td>
+  </tr>
+<% end %>
