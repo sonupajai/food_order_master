@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   root 'homes#index'
 
   resources :hotels do
-    resources :delivery_areas
     resources :menus do
+      get :view_menu, :on => :collection
       resources :menu_items
     end
+     resources :delivery_areas
   end
 
   resources :cities do
@@ -17,7 +18,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :homes do
-    get :autocomplete_city_name, :on => :collection
     get :hotel_list, :on => :collection
   end
   get 'homes/hotel_list', to: 'homes#hotel_list'

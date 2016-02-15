@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require jquery-ui
-//= require autocomplete-rails
 //= require select2
 //= require turbolinks
 //= require jquery.editable-select

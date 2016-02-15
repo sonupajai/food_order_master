@@ -1,7 +1,6 @@
-$("#ul_errors").html("")
 <% if @menu.errors.any? %>
   	<% @menu.errors.full_messages.each do |message| %>
-    	$("#ul_errors").append($("<li />").html("<%= message.html_safe %>"))
+    	$("#ul_errors").html('').append($("<li />").html("<%= message.html_safe %>"))
 	<% end %>
 <% else %>
 	$("#menu_view").html("<%= escape_javascript(render 'index') %>")

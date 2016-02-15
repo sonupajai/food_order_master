@@ -8,19 +8,11 @@
 <br/>
 <% @hotels.each do |hotel| %>
 <div class="row">
-<<<<<<< HEAD
-  <div class="col-sm-2"></div>   
-  <div class="col-sm-10 border_div">    
-      <div class="col-sm-2 ">      
-        <img width="100" height="100" src="<%=hotel.image.url %>" alt="Logo Image">     
-      </div>   
-=======
   <div class="col-sm-2"></div>
   <div class="col-sm-10 border_div">
       <div class="col-sm-2 ">
             <img width="100" height="100" src="<%=hotel.image.url %>" alt="Logo Image">
       </div>
->>>>>>> eea04fa0c6b8a01a45b43fee179780e63e7ec0ea
       <div class="col-sm-10" >
          <div class="col-sm-8" >
             <%= hotel.name%>
@@ -47,7 +39,6 @@
            </div>
           </div>
           <div class="row">
-<<<<<<< HEAD
             <div class="col-sm-3">
              <%= get_delivery_area_for_hotel(hotel.id,@area_id).try(:delivery_time)%>
             </div>
@@ -56,33 +47,19 @@
             </div>
             <div class="col-sm-3">
              <%= get_delivery_area_for_hotel(hotel.id,@area_id).try(:min_order_amount)%>
-=======
-             <div class="col-sm-3">
-                 <%= hotel.get_delivery_area_for_hotel(@area_id).try(:delivery_time)  %>
-             </div>
-              <div class="col-sm-3">
-                <%= hotel.get_delivery_area_for_hotel(@area_id).try(:delivery_charges) %>
-                </div>
-              <div class="col-sm-3">
-                <%= hotel.get_delivery_area_for_hotel(@area_id).try(:min_order_amount) %>
->>>>>>> eea04fa0c6b8a01a45b43fee179780e63e7ec0ea
              </div>
           </div>
           </div>
           <div class="col-sm-4" >
-            <%= link_to 'Go To Menu', hotel_menus_path(hotel), class: 'btn btn-success btn-lg' %>
+            <%= link_to 'Go To Menu', view_menu_hotel_menus_path(hotel), class: 'btn btn-success btn-lg' %>
               <!-- <a href="" class="">Go to menu</a> -->
           </div>
       </div>
-<<<<<<< HEAD
-       <hr> 
-  </div>          
-</div> 
-  <% end %>
-=======
        <hr>
 
   </div>
 
->>>>>>> eea04fa0c6b8a01a45b43fee179780e63e7ec0ea
 </div>
+
+ <br>
+  <% end %></div>

@@ -1,8 +1,10 @@
 class MenusController < ApplicationController
   before_action :set_hotel
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
-  # GET /menus
-  # GET /menus.json
+
+  def view_menu
+ @menus = @hotel.menus.all
+  end
   def index
     @menus = @hotel.menus.all
     @menu = Menu.new
@@ -12,6 +14,7 @@ class MenusController < ApplicationController
   # GET /menus/1
   # GET /menus/1.json
   def show
+
   end
 
   # GET /menus/new
@@ -27,6 +30,7 @@ class MenusController < ApplicationController
   # POST /menus.json
   def create
     @menu = @hotel.menus.build(menu_params)
+    @menu.hotel_id=@hotel.id
     @menu.save
     @menus = @hotel.menus.all
     # @menu = Menu.new(menu_params)
