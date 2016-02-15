@@ -2,7 +2,9 @@
 <% @menus.each do |menu| %>
       <tr>
       	<td><img width="100" height="" src="<%= menu.image.url %>" alt="Logo Image" class="img-thumbnail">
-        <h4><%= menu.name.capitalize %></h4></td>
+        <h4><%= menu.name.capitalize %></h4>
+        <a href="<%=  hotel_menu_menu_items_path(@hotel, menu)%>" class="label label-info" >Menu Item
+              <i class="fa fa-plus"></i></a></b></td>
         <td><%= link_to "<i class='glyphicon glyphicon-pencil'></i> Edit".html_safe,  edit_hotel_menu_path(@hotel, menu), remote: true %></td>
         <td><%= link_to "<i class='glyphicon glyphicon-remove'></i> Delete".html_safe,  hotel_menu_path(@hotel, menu), method: :delete, :class =>"delete_#{menu.id}", data: { confirm: 'Are you sure?' } , :title => "Remove Menu", :remote => :true %>
         </td>

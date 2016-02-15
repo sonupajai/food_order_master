@@ -17,10 +17,10 @@ class Hotel
   do_not_validate_attachment_file_type :image
   validates :name, :type, :city_id, :presence => true
 
+
  #validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
  # has_and_belongs_to_many :menus
-
 
   def get_delivery_area_for_hotel(area_id)
     DeliveryArea.where({ hotel_id: id, area_id: area_id }).try(:first)

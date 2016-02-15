@@ -1,9 +1,10 @@
 class MenuItem
   include Mongoid::Document
   field :name, type: String
-  field :price, type: Float
-  field :quantity, type: Integer
+  field :price, type: Integer
+  field :quantity, type: String
   field :description, type: String
+  field :discount, type: Integer
 
   belongs_to :menu
 end
