@@ -1,8 +1,27 @@
+<%= render "shared/ajax_call_area" %> 
 <ol class = "breadcrumb">
    <li><a href ="<%=root_path %>">Home</a></li>
-   <li><a href = "">Restaurants </a></li>
-   <li>Add Delivery Location</li>
+   <li><a href = "#">Restaurants </a></li>
+   <li><%=@hotel.name%> </li>
+   <li>Delivery Locations</li>
 </ol>
-<%= render 'form' %>
-
-
+<div class="container">
+ <ul id="ul_errors"></ul> 
+  <div class="new-dl-area">
+	<%= render 'form' %>
+</div>
+<hr>
+<table class="table table-bordered table-striped">
+  	<thead>
+	    <tr>
+	      <th>Delivery Location</th>
+	      <th>Estimated Delivery Time</th>
+	      <th>Delivery Charges</th>
+	      <th>Min Order Amount</th>	      
+	    </tr>
+ 	</thead>
+	<tbody class="dl_area_index">
+	    <%= render "index" %>
+ 	</tbody>
+</table>
+</div>

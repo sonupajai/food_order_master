@@ -4,4 +4,5 @@ class City
   has_many :areas
   has_many :hotels
   validates :name, presence: true, uniqueness: true
+
 end

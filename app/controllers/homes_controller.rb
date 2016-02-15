@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
 autocomplete :city, :name
-
+layout false, only: [:show]
   def index
   	@city=City.all  	
   end
@@ -12,6 +12,7 @@ autocomplete :city, :name
   def hotel_list
   	@area_id = params[:area_id]
     @area = Area.find(@area_id)
-	  @hotels = Area.find(@area_id).hotels
+	  @hotels = @area.hotels
+   
   end
 end
