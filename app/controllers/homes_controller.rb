@@ -12,7 +12,7 @@ layout false, only: [:show]
   def hotel_list
   	@area_id = params[:area_id]
     @area = Area.find(@area_id)
-	  @hotels = @area.hotels
-   
+	  @hotels = @area.hotels   
   end
+  
 end

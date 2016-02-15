@@ -9,6 +9,7 @@ class Hotel
   field :address, type: String
   field :owner_id, type: String
   has_many :delivery_areas
+  has_many :menus
   belongs_to :user
   belongs_to :city
 
@@ -18,7 +19,7 @@ class Hotel
 
  #validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
-  has_and_belongs_to_many :menus
+ # has_and_belongs_to_many :menus
 
 
   def get_delivery_area_for_hotel(area_id)

@@ -7,6 +7,40 @@ $navbar-default-bg: #d9534f   ;
 @import "homes";
 @import "hotels";
 
+.icon_color
+{
+    color:#009968!important;
+    width:20px;
+    background-color:#ecf5ef;
+}
+.cart__empty__elements
+{
+    padding-left: 18px;
+    list-style:none;
+}
+.menu_list {
+  padding: 10px;
+   float: left;  
+   width: 220px;
+   height: 100%;  
+}   
+.menu_div {
+   float: left;   
+   width: 630px;
+   height: 100%;
+   margin-left:15px;
+} 
+.order_div {
+   float: left;
+   margin-left: 15px;
+   padding: 10px;
+   width: 250px;
+   min-height:300px;
+   height: auto;
+   border: 1px solid black;
+   margin-top: 31px;
+} 
+
 body{
     overflow-x:hidden;
 }
