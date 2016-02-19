@@ -1,15 +1,18 @@
 <%= render "shared/ajax_call_area" %>
 <script >	
-	$( document ).ready(function() {
-    	 $(".select2-selection--single").css('height', '37px')
- 	});
+$( document ).ready(function() {
+    $(".select2-selection--single").css('height', '37px')
+   });
 </script>
 <div class="jumbotron" style="text-align:center">
  	<h1 class="tag_line"> Order delicious food online!</h1>
- 	<h4 class="tag_line">Order food online from the best restaurants near you</h4><br/><br/> 
-	<form  action="<%=hotel_list_homes_path %>">
+ 	<h4 class="tag_line">
+ 		Order food online from the best restaurants near you.
+ 	</h4><br/><br/> 
+	<form action="<%=hotel_list_homes_path %>">
 		<center>
-		<div style="background-color: #ffdf94; width:800px; height:100px; padding-top: 31px; margin-top: 30px;">
+		<div class="dependancy_div">
+		
 			<%= render "shared/city_dependancy" %>
 			<input type="submit" class="btn btn-success btn-lg" value="Find Restaurant">
 		</div>

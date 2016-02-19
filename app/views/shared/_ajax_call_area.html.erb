@@ -1,6 +1,8 @@
 <script type="text/javascript">
   $( document ).ready(function() {
-     $(".multipleSelect").select2(); 
+     $(".multipleSelect").select2({ 
+          placeholder: 'Select'
+      }); 
   	 $('#city_id').change(function(){
 			    city_id=$("#city_id").val();
 			    $.ajax({
@@ -9,7 +11,7 @@
               data: {city_id:city_id },
               dataType: "html",
               success: function (data) {                	
-                  $("#area_id").html(data.toString());           
+                  $("#area_id").html(data.toString());          
               },
               error: function (xhr, status, error) {
                   console.log(xhr.responseText);
