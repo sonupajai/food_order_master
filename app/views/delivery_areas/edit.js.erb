@@ -1,9 +1,28 @@
-$("#city_name").html("")
+
+
 <% if @delivery_area.errors.any? %>
   	<% @delivery_area.errors.full_messages.each do |message| %>
     	$("#ul_errors").append($("<li />").html("<%= message.html_safe %>"))
 	<% end %>
 <% else %>
-	$(".new-dl-area").html("<%= escape_javascript(render 'form') %>")
+	$(".new-dl-area").html("<%= escape_javascript(render 'form') %>")	
 	$(".multipleSelect").select2(); 
+	$('#city_id').val("<%= @delivery_area.city_id %>").trigger('change');
+
+			  city_id=$("#city_id").val();
+			  $.ajax({
+	              url: "/homes/show",
+	              type: "GET",
+	              data: {city_id:city_id },
+	              dataType: "html",
+	              success: function (data) {                	
+	                  $("#area_id").html(data);
+	                  $('#area_id').val("<%= @delivery_area.area_id.to_s %>").trigger('change');    
+	              },
+	              error: function (xhr, status, error) {
+	                  console.log(xhr.responseText);
+	              }
+	          });		
+	
 <% end %>
+

@@ -2,7 +2,6 @@ class User
   include Mongoid::Document
   include Mongoid::Paperclip
 
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -37,7 +36,7 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
   has_many :hotels
-
+  has_many :orders
   after_create :sending_welcome_email
 
   def sending_welcome_email

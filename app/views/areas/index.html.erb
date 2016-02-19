@@ -1,17 +1,18 @@
 <ol class = "breadcrumb">
    <li><a href ="<%=root_path %>">Home</a></li>
+   <li class="active"><b><%= @city.name %></b></li>
    <li class="active"><b>Location</b></li>
 </ol>
 <div class="container">
   <p id="notice"><%= notice %></p>
-  <%= link_to 'Add+', new_area_path,remote:true, class: 'btn btn-outline btn-danger' %><br/><br/>
+  <%= link_to 'Add+', new_city_area_path(@city),remote:true, class: 'btn btn-outline btn-danger' %><br/><br/>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th>Location</th>
-        <th>City</th>
         <th>Pincode</th>
-        <th colspan="2"></th>
+        <th>#</th>
+        <th>#</th>
       </tr>
     </thead>
     <tbody class="area-index">

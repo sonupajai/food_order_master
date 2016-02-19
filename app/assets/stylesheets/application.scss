@@ -6,45 +6,19 @@ $navbar-default-bg: #d9534f   ;
 @import "font-awesome";
 @import "homes";
 @import "hotels";
-
-.icon_color
-{
-    color:#009968!important;
-    width:20px;
-    background-color:#ecf5ef;
-}
-.cart__empty__elements
-{
-    padding-left: 18px;
-    list-style:none;
-}
-.menu_list {
-  padding: 10px;
-   float: left;  
-   width: 220px;
-   height: 100%;  
-}   
-.menu_div {
-   float: left;   
-   width: 630px;
-   height: 100%;
-   margin-left:15px;
-} 
-.order_div {
-   float: left;
-   margin-left: 15px;
-   padding: 10px;
-   width: 250px;
-   min-height:300px;
-   height: auto;
-   border: 1px solid black;
-   margin-top: 31px;
-} 
+@import "menus";
 
 body{
     overflow-x:hidden;
 }
-
+.dependancy_div
+{
+    background-color: #ffdf94;
+    width:800px; 
+    height:100px; 
+    padding-top: 31px; 
+    margin-top: 30px;
+}
 .fa-times
 {
     color:red !important;
@@ -60,7 +34,7 @@ body{
 }
 .badge{
 
-        margin-top: -16px;
+    margin-top: -16px;
     margin-right: -9px;
 }
 footer {
@@ -73,7 +47,9 @@ footer {
     color: white !important;
 }
 .container{
-    min-height: 550px;
+    min-height: 600px;
+    padding-left: 0; 
+    padding-right: 0;
 }
 
 .min_div_height{
@@ -90,7 +66,6 @@ footer {
     color: white !important;
     font-weight: bold;
 }
-
 .menu_font
 {
 	color: white !important;
@@ -119,16 +94,14 @@ footer {
 }
 .ui-menu-item
 {
- background-color: white!important;
- width: 129px;
-
-list-style-type: none;
-left: 517.5px!important;
-
+    background-color: white!important;
+    width: 129px;
+    list-style-type: none;
+    left: 517.5px!important;
 }
 .ui-menu-item:hover {
-font-weight: bold;
- background-color: blue!important;
+    font-weight: bold;
+    background-color: blue!important;
 }
 .ui-widget-content{
 	width: 734px !important;
@@ -139,9 +112,9 @@ font-weight: bold;
     padding-top: 7px;
     padding-bottom: 7px;
 }
- .select2-selection select2-selection--single
+.select2-selection select2-selection--single
 {
-	background-color: white !important;
+	 background-color: white !important;
     height: 37px !important;
     width: 250px !important;
     margin-top: -6px;

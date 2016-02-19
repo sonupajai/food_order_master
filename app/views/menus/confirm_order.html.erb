@@ -1,0 +1,68 @@
+<div class="container">
+<center>
+ <div class="order_div" style="width:700px; float:none"> 
+  	<div class="cart__content">
+      <div class="cart__header">
+	      <div class="cart__header__title">
+	        <h3 style="color:#009968!important">Your order &nbsp;&nbsp;&nbsp;<i class="fa fa-shopping-bag"></i>
+          </h3>
+          <hr>
+        </div>
+	    </div>
+      <div class="cart__products">
+        <table id="myTable" class="table table-striped">
+         <thead>
+         	<th>Menu Item</th>
+         	<th colspan="2">Quantity</th>
+         	<th>Price</th>
+         </thead>
+          <tbody id="order_items"> 
+        <%@sum=0%>
+			<% @order_items.each do |oi| %>
+			    <tr class="product">
+			        
+			        <td class="product__title ">
+			            <span class="product__title__name">
+			            <h4>
+			            <a href="<%=delete_order_item_path%>?item_id=<%=oi.menu_item_id %>" >
+			               <i class="fa fa-times-circle" style="color:red;"></i>
+			            </a>
+			                <%=oi.menu_item.name%>
+			            </h4>
+			            </span>
+			        </td>
+			        <td class="product__quantity">
+			          <span class="product__quantity__wrapper"><%=oi.quantity%></span>
+			        </td>
+			         <td >
+			            <div class="product__amount-controls">  
+			                <a href="<%=reduce_order_item_path %>?item_id=<%=oi.menu_item_id %>" class="btn btn-xs btn-default" data-remote="true">-</a>
+			                <a href="<%=add_order_item_path %>?item_id=<%=oi.menu_item_id %>" class="btn btn-xs btn-default" data-remote="true">+</a>               
+			            </div>
+			        </td>
+			        <td>
+			            <span class="product__price__element" >
+			                 &nbsp; Rs. <%=oi.menu_item.price.to_i*oi.quantity%>
+			                 <% @sum+=oi.menu_item.price.to_i*oi.quantity %>
+			            </span>
+			        </td>
+			    </tr>
+			  
+			<% end %>
+
+            
+          </tbody>
+        </table>
+      </div>   
+      <hr> 
+
+     
+    </div>
+    <div class="cart__checkout">
+        <a class="btn btn-default disabled btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" href="<%confirm_order_path%>" style="background-color:#009968" id="btn_proceed">
+            Proceed to Pay
+        </a>
+    </div>
+  </div>
+ </center>
+</div>

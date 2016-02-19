@@ -1,14 +1,18 @@
 <ol class = "breadcrumb">
    <li><a href ="<%=root_path %>">Home</a></li>
-   <li class="active">Restaurants</li>
+   <li class="active">All Restaurants</li>
 </ol>
 <div class="container">
-<%= link_to 'Add+', new_hotel_path, {:style=>'margin-left: 218px;', :class=>'btn btn-danger'} %>
-<br><br>
+
+<div class="row">  
+  <div class="col-sm-12">
+  <%= link_to 'Add+', new_hotel_path, { :class=>'btn btn-danger'} %>
+  </div>
+</div>
+<br/>
 <% @hotels.each do |hotel| %>
-<div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-8">
+<div class="row">  
+  <div class="col-sm-12">
       <div class="panel panel-warning" >
           <div class="panel-heading">
             <h3 class="panel-title">
@@ -22,21 +26,21 @@
           <div class="panel-body">
             <b> Speciality: </b><%= hotel.speciality %> <br/>
             <b> Address: </b><%= hotel.address %> ,<%= hotel.city.try(:name) %><br/>
-            <b><a href="<%= new_hotel_delivery_area_path(hotel)%>" class="label label-info" >Delivery Location
-              <i class="fa fa-plus"></i></a>
+            <b>
+              <a href="<%= new_hotel_delivery_area_path(hotel)%>" class="label label-info" >Delivery Location <i class="fa fa-plus"></i>
+              </a>&nbsp;&nbsp;
               <a href="<%=  hotel_menus_path(hotel)%>" class="label label-info" >Menu
-              <i class="fa fa-plus"></i></a></b>
-<<<<<<< HEAD
-              <a href="" class="label label-info" >Menu Item
-              <i class="fa fa-plus"></i></a></b>
-=======
->>>>>>> master
+              <i class="fa fa-plus"></i>
+              </a>
+            </b>
+
+
           </div>
       </div>
   </div>
 </div>
-  <% end %>
-  <div align="center">
-    <%= paginate @hotels %>
-  </div>
+<% end %>
+<div align="center">
+  <%= paginate @hotels %>
+</div>
 </div>
