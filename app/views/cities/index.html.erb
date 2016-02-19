@@ -3,11 +3,18 @@
    <li class="active"><b>City</b></li>
 </ol>
 <div class="container"> <br/>
-  <%= render'shared/error_messages', ref_obj: @city %>
+
   <ul id="ul_errors"></ul>
+  <div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
   <div class="new-city">
     <%= render 'form' %>
+      </div>
+    </div>
   </div>
+</div>
+ <div class="row">
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -22,5 +29,6 @@
       <%= render "index" %>
     </tbody>
   </table>
+</div>
   <div id="city-modal" class="modal fade"></div>
 </div>

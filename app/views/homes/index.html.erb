@@ -1,22 +1,21 @@
-<!%= autocomplete_field_tag 'city', '', autocomplete_city_name_homes_path%>
-<!%= javascript_include_tag "get_area_from_city.js" %>
 <%= render "shared/ajax_call_area" %>
 <script >	
-	$( document ).ready(function() {
-    	 $(".select2-selection--single").css('height', '37px')
- 	});
+$( document ).ready(function() {
+    $(".select2-selection--single").css('height', '37px')
+   });
 </script>
 <div class="jumbotron" style="text-align:center">
  	<h1 class="tag_line"> Order delicious food online!</h1>
  	<h4 class="tag_line">
-		Order food online from the best restaurants near you
-	</h4><br/><br/> 
-	<form  action="<%=hotel_list_homes_path %>">
+ 		Order food online from the best restaurants near you.
+ 	</h4><br/><br/> 
+	<form action="<%=hotel_list_homes_path %>">
 		<center>
-			<div style="background-color: #ffdf94; width:800px; height:100px; padding-top: 31px; margin-top: 30px;">
-				<%= render "shared/city_dependancy" %>
-				<input type="submit" class="btn btn-success btn-lg" value="Find Restaurant">
-			</div>
+		<div class="dependancy_div">
+		
+			<%= render "shared/city_dependancy" %>
+			<input type="submit" class="btn btn-success btn-lg" value="Find Restaurant">
+		</div>
 		</center>
 	</form>
 </div>

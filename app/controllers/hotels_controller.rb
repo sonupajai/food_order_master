@@ -7,20 +7,16 @@ class HotelsController < ApplicationController
     @hotels = Hotel.order(name: :asc).page(params[:page]).per(5)
   end
 
-  def show
-  end
-
   def new
     @hotel = Hotel.new
   end
   def edit
   end
-
   def create
     @hotel = Hotel.new(hotel_params)
     respond_to do |format|
       if @hotel.save
-        format.html { redirect_to @hotel, notice: 'Hotel was successfully created.' }
+        format.html { redirect_to hotels_path, notice: 'Hotel was successfully created.' }
         format.json { render :show, status: :created, location: @hotel }
       else
         format.html { render :new }
@@ -32,7 +28,7 @@ class HotelsController < ApplicationController
   def update
     respond_to do |format|
       if @hotel.update(hotel_params)
-        format.html { redirect_to @hotel, notice: 'Hotel was successfully updated.' }
+        format.html { redirect_to hotels_path, notice: 'Hotel was successfully updated.' }
         format.json { render :show, status: :ok, location: @hotel }
       else
         format.html { render :edit }

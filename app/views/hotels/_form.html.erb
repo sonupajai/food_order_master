@@ -8,9 +8,7 @@
           <%= f.file_field :image , class: "form-control" %>
         </div>
         <div class="col-xs-3">
-
           <img width="100" height="50" src="<%=@hotel.image.url %>" alt="Logo Image" , class: "form-control">
-
         </div>
       <% else %>
         <div class="col-xs-10">
@@ -58,7 +56,6 @@
         <div class="col-sm-offset-2 col-sm-10">
           <div class="actions">
             <%= f.submit "Save", class: 'btn btn-outline btn-success'%>
-            <%= link_to 'Back', hotels_path, class: 'btn btn-outline btn-success' %>
           </div>
         </div>
       </center>

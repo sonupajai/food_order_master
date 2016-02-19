@@ -1,6 +1,9 @@
 <ol class = "breadcrumb">
-   <li><a href ="<%= hotel_menus_path(@hotel) %>">Menu</a></li>
-   <li class="active"><b>Menu Item</b></li>
+  <li><a href ="<%=root_path %>">Home</a></li>
+  <li><a href ="<%=hotels_path %>">Restaurants</a></li>
+  <li><a href ="<%=hotel_path(@hotel.id) %>"><b><%=@hotel.name %></b></a></li>
+  <li><a href ="<%= hotel_menus_path(@hotel) %>"><%=@menu.name.capitalize %> Menu</a></li>
+  <li class="active"><b>Menu Item</b></li>
 </ol>
 <div class="container">
   <p id="notice"><%= notice %></p>

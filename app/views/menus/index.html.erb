@@ -1,8 +1,22 @@
+<ol class = "breadcrumb">
+  <li><a href ="<%=root_path %>">Home</a></li>
+  <li><a href ="<%=hotels_path %>">Restaurants</a></li>
+  <li class="active"><b><%=@hotel.name %></b></li>
+  <li class="active"><b>Menu</b></li>
+</ol>
+
 <div class="container">
 <br/>
-  <div class="new-menu">
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
+    <div class="new-menu">
     <%= render 'form' %>
+    </div>
+    </div>
   </div>
+</div>
+<div class="row">
   <ul id="ul_errors"></ul>
   <table class="table table-bordered table-striped ">
     <thead>
@@ -16,10 +30,10 @@
         <% end %>
       </tr>
     </thead>
-
     <tbody id="menu_view">
       <%= render "index" %>
     </tbody>
   </table>
+  </div>
   <div id="add_menu" class="modal fade"></div>
 </div>

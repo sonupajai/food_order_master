@@ -2,9 +2,9 @@ class AreasController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_city, only: [:index,:edit, :new, :create, :update]
   before_action :set_area, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_city
   def index
-    @areas = Area.all
+    @areas = @city.areas.all.order_by(:name => 'asc')
     @area = Area.new
   end
 
@@ -20,19 +20,23 @@ class AreasController < ApplicationController
 
   def create
     @area = Area.new(area_params)
-    @area.save
-    @areas = Area.all
+    @area.city_id=params[:city_id]
+   if @area.save
+     @areas = @city.areas.all
+   end
   end
 
   def update
-    @area.update(area_params)
-    @areas = Area.all
+    if @area.update(area_params)
+     @areas = @city.areas.all
+    end
   end
 
   def destroy
-    @area.destroy
-    @areas = Area.all
-    @area = Area.new
+    if @area.destroy
+      @areas = @city.areas.all
+      @area = Area.new
+  end
   end
 
   def delete
@@ -45,7 +49,7 @@ class AreasController < ApplicationController
       @area = Area.find(params[:id])
     end
     def set_city
-        @cities = City.all
+      @city = City.find(params[:city_id])         
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

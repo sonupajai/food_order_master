@@ -1,10 +1,12 @@
 <% @menus.each do |menu| %>
   <tr>
-  	<td><img width="100" height="" src="<%= menu.image.url %>" alt="Logo Image" class="img-thumbnail">
-    <h4><%= menu.name.capitalize %></h4>
+  	<td><img src="<%= menu.image.url %>" alt="Logo Image" class="img-thumbnail" style="height:50px">
+    <b><%= menu.name.capitalize %></b>
     <% if can? :create, menu %>
-    	<a href="<%=  hotel_menu_menu_items_path(@hotel, menu)%>" class="label label-info" >Menu Item
-          <i class="fa fa-plus"></i></a></b></td>
+    	<a href="<%=  hotel_menu_menu_items_path(@hotel, menu)%>" class="label label-info" style="float:right">Menu Item
+              <i class="fa fa-plus"></i>
+            </a>
+        </td>
     <% end %>
     <% if can? :update, @hotel %>
     <td>

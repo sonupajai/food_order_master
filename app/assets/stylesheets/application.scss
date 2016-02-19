@@ -6,15 +6,35 @@ $navbar-default-bg: #d9534f   ;
 @import "font-awesome";
 @import "homes";
 @import "hotels";
+@import "menus";
 
+body{
+    overflow-x:hidden;
+}
+.dependancy_div
+{
+    background-color: #ffdf94;
+    width:800px; 
+    height:100px; 
+    padding-top: 31px; 
+    margin-top: 30px;
+}
 .fa-times
 {
     color:red !important;
 }
-
+#sidebar-wrapper
+{
+    background-color: #f5f5f5 !important;
+    color:black;
+}
+.side_head
+{
+    color: black!important;
+}
 .badge{
 
-        margin-top: -16px;
+    margin-top: -16px;
     margin-right: -9px;
 }
 footer {
@@ -27,7 +47,9 @@ footer {
     color: white !important;
 }
 .container{
-    min-height: 550px;
+    min-height: 600px;
+    padding-left: 0; 
+    padding-right: 0;
 }
 
 .min_div_height{
@@ -44,7 +66,6 @@ footer {
     color: white !important;
     font-weight: bold;
 }
-
 .menu_font
 {
 	color: white !important;
@@ -73,16 +94,14 @@ footer {
 }
 .ui-menu-item
 {
- background-color: white!important;
- width: 129px;
-
-list-style-type: none;
-left: 517.5px!important;
-
+    background-color: white!important;
+    width: 129px;
+    list-style-type: none;
+    left: 517.5px!important;
 }
 .ui-menu-item:hover {
-font-weight: bold;
- background-color: blue!important;
+    font-weight: bold;
+    background-color: blue!important;
 }
 .ui-widget-content{
 	width: 734px !important;
@@ -93,9 +112,9 @@ font-weight: bold;
     padding-top: 7px;
     padding-bottom: 7px;
 }
- .select2-selection select2-selection--single
+.select2-selection select2-selection--single
 {
-	background-color: white !important;
+	 background-color: white !important;
     height: 37px !important;
     width: 250px !important;
     margin-top: -6px;

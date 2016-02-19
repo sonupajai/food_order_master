@@ -8,4 +8,5 @@ class MenuItem
   field :user_id, type: String
 
   belongs_to :menu
+  has_many :order_items
 end

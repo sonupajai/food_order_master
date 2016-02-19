@@ -39,23 +39,24 @@
            </div>
           </div>
           <div class="row">
-             <div class="col-sm-3">
-                 <%= hotel.get_delivery_area_for_hotel(@area_id).try(:delivery_time)  %>
-             </div>
-              <div class="col-sm-3">
-                <%= hotel.get_delivery_area_for_hotel(@area_id).try(:delivery_charges) %>
-                </div>
-              <div class="col-sm-3">
-                <%= hotel.get_delivery_area_for_hotel(@area_id).try(:min_order_amount) %>
-             </div>
+            <div class="col-sm-3">
+             <%= get_delivery_area_for_hotel(hotel.id,@area_id).try(:delivery_time)%>
+            </div>
+            <div class="col-sm-3">
+              <%= get_delivery_area_for_hotel(hotel.id,@area_id).try(:delivery_charges)%>
+            </div>
+            <div class="col-sm-3">
+             <%= get_delivery_area_for_hotel(hotel.id,@area_id).try(:min_order_amount)%>
+            </div>
           </div>
           </div>
           <div class="col-sm-4" >
-            <%= link_to 'Go To Menu', hotel_menus_path(hotel), class: 'btn btn-success btn-lg' %>
+            <%= link_to 'Go To Menu', view_menu_hotel_menus_path(hotel_id: hotel.id, area_id: @area_id), class: 'btn btn-success btn-lg' %>
               <!-- <a href="" class="">Go to menu</a> -->
           </div>
       </div>
+       <hr>
   </div>
 </div>
-  <% end %>
-</div>
+ <br>
+<% end %></div>

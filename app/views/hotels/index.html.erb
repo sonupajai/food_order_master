@@ -1,17 +1,21 @@
 <ol class = "breadcrumb">
    <li><a href ="<%=root_path %>">Home</a></li>
-   <li class="active">Restaurants</li>
+   <li class="active">All Restaurants</li>
 </ol>
-<p id="notice"><%= notice %></p>
-<% if can? :create, @hotel %>
-<%= link_to 'Add+', new_hotel_path, {:style=>'margin-left: 218px;', :class=>'btn btn-danger'} %>
-<% end %>
-<br><br>
+<div class="container">
+
+<div class="row">
+  <div class="col-sm-12">
+  <% if can? :create, @hotel %>
+    <%= link_to 'Add+', new_hotel_path, { :class=>'btn btn-danger'} %>
+  <% end %>
+  </div>
+</div>
+<br/>
 
 <% @hotels.each do |hotel| %>
 <div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-8">
+  <div class="col-sm-12">
       <div class="panel panel-warning" >
           <div class="panel-heading">
             <h3 class="panel-title">
@@ -30,21 +34,20 @@
             <b> Speciality: </b><%= hotel.speciality %> <br/>
             <b> Address: </b><%= hotel.address %> ,<%= hotel.city.try(:name) %><br/>
             <% if can? :update, hotel %>
-              <b><a href="<%= new_hotel_delivery_area_path(hotel)%>" class="label label-info" >Delivery Location
-              <i class="fa fa-plus"></i></a>
-            <% end %>
-            <% if can? :update, hotel %>
-              <a href="<%=  hotel_menus_path(hotel)%>" class="label label-info" >Menu
-              <i class="fa fa-plus"></i></a></b>
+               <b>
+                <a href="<%= new_hotel_delivery_area_path(hotel)%>" class="label label-info" >Delivery Location <i class="fa fa-plus"></i>
+                </a>&nbsp;&nbsp;
+                <a href="<%=  hotel_menus_path(hotel)%>" class="label label-info" >Menu
+                <i class="fa fa-plus"></i>
+                </a>
+              </b>
             <% end %>
           </div>
       </div>
   </div>
-  <div class="col-sm-1"></div>
 </div>
-  <% end %>
-  <div align="center">
-    <%= paginate @hotels %>
-  </div>
-
-
+<% end %>
+<div align="center">
+  <%= paginate @hotels %>
+</div>
+</div>

@@ -13,6 +13,6 @@ layout false, only: [:show]
   	@area_id = params[:area_id]
     @area = Area.find(@area_id)
 	  @hotels = @area.hotels
-
   end
+
 end

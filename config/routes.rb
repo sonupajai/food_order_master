@@ -2,28 +2,36 @@ Rails.application.routes.draw do
   root 'homes#index'
 
   resources :hotels do
-    resources :delivery_areas
     resources :menus do
+      get :view_menu, :on => :collection
       resources :menu_items
     end
+     resources :delivery_areas do
+    get "delete"
   end
-
+  end
+  
   resources :cities do
     get "delete"
-  end
-  resources :areas do
+    resources :areas do
     get "delete"
   end
+  end
+  
   devise_for :users
 
   resources :users, only: [:index, :edit, :update, :show]
 
 
   resources :homes do
-    get :autocomplete_city_name, :on => :collection
     get :hotel_list, :on => :collection
   end
   get 'homes/hotel_list', to: 'homes#hotel_list'
+  get 'add_order_item', to: 'menus#add_order_item'
+  get 'reduce_order_item', to: 'menus#reduce_order_item'
+  get 'confirm_order', to: 'menus#confirm_order'
+  get 'delete_order_item', to: 'menus#delete_order_item'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

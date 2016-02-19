@@ -41,6 +41,8 @@ class User
 
   before_create :set_default_role
 
+  has_many :orders
+
   after_create :sending_welcome_email
 
   def sending_welcome_email
