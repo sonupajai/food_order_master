@@ -2,25 +2,27 @@
    <li><a href ="<%=root_path %>">Home</a></li>
    <li class="active"><b>City</b></li>
 </ol>
-<div class="container"> <br/> 
+<div class="container"> <br/>
 
-  <ul id="ul_errors"></ul> 
-  <div class="row">  
+  <ul id="ul_errors"></ul>
+  <div class="row">
   <div class="panel panel-default">
     <div class="panel-body">
-    <div class="new-city">
+  <div class="new-city">
     <%= render 'form' %>
-    </div>
+      </div>
     </div>
   </div>
 </div>
- <div class="row">  
+ <div class="row">
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th colspan="2">City Name </th>      
-        <th>  </th>
-        <th> </th>
+        <th colspan="2">City Name </th>
+        <% if can? :update || :destroy , @city %>
+          <th>  </th>
+          <th> </th>
+        <% end %>
       </tr>
     </thead>
     <tbody class="city-index">

@@ -1,4 +1,5 @@
 class MenusController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_hotel
   before_action :set_order_id, only: [:view_menu, :add_order_item, :reduce_order_item ]
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
@@ -103,7 +104,7 @@ class MenusController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_params
-      params.require(:menu).permit(:name, :image)
+      params.require(:menu).permit(:name, :image, :user_id)
     end
     def set_order_id
       if session[:order_id]==nil 

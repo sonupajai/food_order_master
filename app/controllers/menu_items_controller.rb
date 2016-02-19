@@ -1,4 +1,5 @@
 class MenuItemsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_hotel
   before_action :set_menu
   before_action :set_menu_item, only: [:show, :edit, :update, :destroy]
@@ -63,6 +64,6 @@ class MenuItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_item_params
-      params.require(:menu_item).permit(:name, :price, :quantity, :description, :discount)
+      params.require(:menu_item).permit(:name, :price, :quantity, :description, :discount, :user_id)
     end
 end
