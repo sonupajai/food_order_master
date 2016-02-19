@@ -2,19 +2,20 @@
    <li><a href ="<%=root_path %>">Home</a></li>
    <li class="active"><b>City</b></li>
 </ol>
-<div class="container"> <br/> 
+<div class="container"> <br/>
   <%= render'shared/error_messages', ref_obj: @city %>
-  <ul id="ul_errors"></ul> 
+  <ul id="ul_errors"></ul>
   <div class="new-city">
     <%= render 'form' %>
-  </div> 
+  </div>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th colspan="2">City Name </th>
-      
-        <th>  </th>
-        <th> </th>
+        <% if can? :update || :destroy , @city %>
+          <th>  </th>
+          <th> </th>
+        <% end %>
       </tr>
     </thead>
     <tbody class="city-index">

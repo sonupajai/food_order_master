@@ -1,4 +1,5 @@
 class MenusController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_hotel
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
   # GET /menus
@@ -58,6 +59,6 @@ class MenusController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_params
-      params.require(:menu).permit(:name, :image)
+      params.require(:menu).permit(:name, :image, :user_id)
     end
 end

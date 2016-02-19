@@ -1,4 +1,4 @@
-
+<% if can? :create, @menu %>
 <%= form_for([@hotel, @menu], remote: true, html: { style: 'display:inline;' }) do |f| %>
 
   <div class="form-group">
@@ -21,6 +21,11 @@
         </div>
       <% end %>
     </div>
+    <div class="form-group">
+      <div class="col-xs-2"></div>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="col-xs-5"></div>
+    </div>
     <div class="col-xs-3">
       <div class="actions">
           <%= f.submit "Save", class: 'btn btn-outline btn-success'%>
@@ -28,4 +33,5 @@
     </div>
   </div>
   <br/><br/><br/><br/>
+<% end %>
 <% end %>

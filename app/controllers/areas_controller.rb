@@ -1,4 +1,5 @@
 class AreasController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_city, only: [:index,:edit, :new, :create, :update]
   before_action :set_area, only: [:show, :edit, :update, :destroy]
 
@@ -49,6 +50,6 @@ class AreasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def area_params
-      params.require(:area).permit(:name, :pincode, :city_id)
+      params.require(:area).permit(:name, :pincode, :city_id, :user_id)
     end
 end

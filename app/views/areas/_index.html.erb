@@ -1,10 +1,14 @@
  <% @areas.each do |area| %>
   <tr>
   	<td><%= area.name %></td>
-    <td><%= area.city.name %></td>    
-    <td><%= area.pincode %></td>       
-    <td><%= link_to '', edit_area_path(area, format: 'js'), remote:true, class: "fa fa-edit" %></td>
-    <td><%= link_to "", area_delete_path(area), remote: true, class: "fa fa-times delete_icon" %>
+    <td><%= area.city.name %></td>
+    <td><%= area.pincode %></td>
+    <% if can? :update, area %>
+    	<td><%= link_to '', edit_area_path(area, format: 'js'), remote:true, class: "fa fa-edit" %></td>
+    <% end %>
+    <% if can? :destroy, area %>
+    	<td><%= link_to "", area_delete_path(area), remote: true, class: "fa fa-times delete_icon" %>
+    <% end %>
     </td>
   </tr>
 <% end %>

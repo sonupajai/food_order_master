@@ -11,7 +11,12 @@
         <th>Location</th>
         <th>City</th>
         <th>Pincode</th>
-        <th colspan="2"></th>
+        <% if can? :update, @area %>
+          <th></th>
+        <% end %>
+        <% if can? :destroy, @area %>
+          <th></th>
+        <% end %>
       </tr>
     </thead>
     <tbody class="area-index">

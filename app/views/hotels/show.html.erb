@@ -12,6 +12,7 @@
           <b> Speciality: </b><%= @hotel.speciality %> <br/><br/>
           <b> Address: </b><%= @hotel.address %> <%= @hotel.city.try(:name) %><br/><br/>
           <b>
+          <% if can? :update, @hotel %>
            <b><a href="<%= new_hotel_delivery_area_path(@hotel)%>" class="label label-info" >Delivery Location
               <i class="fa fa-plus"></i></a>
             </b>
@@ -20,6 +21,7 @@
         </p>
         <p>
           <%= link_to 'Edit', edit_hotel_path(@hotel), :class => "btn btn-success", :method => :get %>
+        <% end %>
           <%= link_to 'Back', hotels_path, :class => "btn btn-success", :method => :get %>
         </p>
         </center>
@@ -27,10 +29,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-<!--%= button_to "Edit", edit_hotel_path(@hotel), :id => "open-contacts-dialog-btn",
-         :class => "btn btn-primary", :method => :get %><%= button_to "Back", hotels_path, :id =>"open-contacts-dialog-btn", :class => "btn btn-primary", :method => :get %>
-<a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a-->

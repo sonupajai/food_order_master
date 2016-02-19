@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   end
   devise_for :users
 
+  resources :users, only: [:index, :edit, :update, :show]
+
+
   resources :homes do
     get :autocomplete_city_name, :on => :collection
     get :hotel_list, :on => :collection

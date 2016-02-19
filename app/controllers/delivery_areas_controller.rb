@@ -1,25 +1,26 @@
 class DeliveryAreasController < ApplicationController
+  before_filter :authenticate_user!
    before_action :set_delivery_area, only: [:edit, :update, :destroy]
    before_action :set_city, only: [:edit , :new, :create]
    before_action :set_hotel, only:[:edit, :new, :create, :update, :destroy]
-  
-  def new   
+
+  def new
     @delivery_area = DeliveryArea.new
     @delivery_areas = DeliveryArea.where(hotel_id: params[:hotel_id])
   end
- 
-  def create    
+
+  def create
     area_arr=params[:area_id] #get multiple areas
     area_arr.each do |id|
       @delivery_area = DeliveryArea.new(delivery_area_params)
       @delivery_area.area_id = id
-      @delivery_area.hotel_id = params[:hotel_id]     
+      @delivery_area.hotel_id = params[:hotel_id]
 
       area = Area.find(id)
       area.hotels << Hotel.find(params[:hotel_id])
-      area.save! 
+      area.save!
 
-      if @delivery_area.save 
+      if @delivery_area.save
         @delivery_areas = DeliveryArea.where(hotel_id: params[:hotel_id])
         @delivery_area = DeliveryArea.new
        end
@@ -29,8 +30,8 @@ class DeliveryAreasController < ApplicationController
   end
   def delete
   end
-  def update   
-      @delivery_area.update(delivery_area_params)   
+  def update
+      @delivery_area.update(delivery_area_params)
   end
 
   def destroy
@@ -50,6 +51,6 @@ class DeliveryAreasController < ApplicationController
    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def delivery_area_params
-      params.require(:delivery_area).permit(:delivery_time, :delivery_charges, :min_order_amount)
+      params.require(:delivery_area).permit(:delivery_time, :delivery_charges, :min_order_amount, :user_id)
     end
 end

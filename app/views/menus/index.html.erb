@@ -8,8 +8,12 @@
     <thead>
       <tr>
         <th>Menu</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <% if can? :update, @hotel %>
+          <th>Edit</th>
+        <% end %>
+        <% if can? :destroy, @hotel %>
+          <th>Delete</th>
+        <% end %>
       </tr>
     </thead>
 

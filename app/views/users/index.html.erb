@@ -1,0 +1,24 @@
+<div class="container">
+<%= paginate @users %>
+<br/><br/><h3 align="center"> Users</h3><br/><br/>
+  <p id="notice"><%= notice %></p>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Role</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+          <td><%= link_to '',  edit_user_path(user), class: "fa fa-edit" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%= paginate @users %>
+</div>
