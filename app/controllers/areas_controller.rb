@@ -1,5 +1,6 @@
 class AreasController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   before_action :set_city, only: [:index,:edit, :new, :create, :update]
   before_action :set_area, only: [:show, :edit, :update, :destroy]
   before_action :set_city
@@ -49,7 +50,7 @@ class AreasController < ApplicationController
       @area = Area.find(params[:id])
     end
     def set_city
-      @city = City.find(params[:city_id])         
+      @city = City.find(params[:city_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
