@@ -3,6 +3,7 @@ class Menu
   include Mongoid::Paperclip
   has_mongoid_attached_file :image
   field :name, type: String
+  field :user_id, type: String
 
   belongs_to :hotel
   has_many :menu_items

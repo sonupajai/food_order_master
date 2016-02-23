@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
 layout false, only: [:show]
   def index
-  	@city=City.all  	
+  	@city=City.all
   end
 
   def show
@@ -9,12 +9,11 @@ layout false, only: [:show]
     session[:order_id]=nil 
   end 
 
+
   def hotel_list
   	@area_id = params[:area_id]
     @area = Area.find(@area_id)
-	  @hotels = @area.hotels   
-    
-    
+	  @hotels = @area.hotels      
   end
   def show_rating
      @hotel=Hotel.find(params[:hotel_id])
@@ -32,7 +31,6 @@ layout false, only: [:show]
         @ratings_tot= Rating.where(hotel_id: params[:hotel_id]).sum(:rating_no)
         @star=(@ratings_tot.to_i/(@ratings.count*5))*5
       end
-
   end
-  
+
 end

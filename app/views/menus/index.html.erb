@@ -7,7 +7,7 @@
 
 <div class="container">
 <br/>
-<div class="row">  
+<div class="row">
   <div class="panel panel-default">
     <div class="panel-body">
     <div class="new-menu">
@@ -22,12 +22,16 @@
     <thead>
       <tr>
         <th>Menu</th>
-        <th>#</th>
-        <th>#</th>
+        <% if can? :update, @hotel %>
+          <th>Edit</th>
+        <% end %>
+        <% if can? :destroy, @hotel %>
+          <th>Delete</th>
+        <% end %>
       </tr>
     </thead>
     <tbody id="menu_view">
-      <%= render "index" %>      
+      <%= render "index" %>
     </tbody>
   </table>
   </div>

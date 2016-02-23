@@ -1,15 +1,21 @@
 <% @menus.each do |menu| %>
-      <tr>
-      	<td>
-      		<img src="<%= menu.image.url %>" alt="Logo Image" class="img-thumbnail" style="height:50px">
-        	<b><%= menu.name.capitalize %></b>
-        	<a href="<%=  hotel_menu_menu_items_path(@hotel, menu)%>" class="label label-info" style="float:right">Menu Item
+  <tr>
+  	<td><img src="<%= menu.image.url %>" alt="Logo Image" class="img-thumbnail" style="height:50px">
+    <b><%= menu.name.capitalize %></b>
+    <% if can? :create, menu %>
+    	<a href="<%=  hotel_menu_menu_items_path(@hotel, menu)%>" class="label label-info" style="float:right">Menu Item
               <i class="fa fa-plus"></i>
             </a>
         </td>
-        <td><%= link_to "<i class='glyphicon glyphicon-pencil'></i> ".html_safe,  edit_hotel_menu_path(@hotel, menu), remote: true %>
-        </td>
-        <td><%= link_to "<i class='glyphicon glyphicon-remove'></i> ".html_safe,  hotel_menu_path(@hotel, menu), method: :delete, :class =>"delete_#{menu.id}", data: { confirm: 'Are you sure?' } , :title => "Remove Menu", :remote => :true %>
-        </td>
-      </tr>
+    <% end %>
+    <% if can? :update, @hotel %>
+    <td>
+    	<%= link_to "<i class='glyphicon glyphicon-pencil'></i> Edit".html_safe,  edit_hotel_menu_path(@hotel, menu), remote: true %>
+    </td>
+    <% end %>
+    <% if can? :destroy, @hotel %>
+    <td><%= link_to "<i class='glyphicon glyphicon-remove'></i> Delete".html_safe,  hotel_menu_path(@hotel, menu), method: :delete, :class =>"delete_#{menu.id}", data: { confirm: 'Are you sure?' } , :title => "Remove Menu", :remote => :true %>
+    </td>
+    <% end %>
+  </tr>
 <% end %>

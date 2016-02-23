@@ -1,5 +1,5 @@
 <%= form_for [@hotel, @delivery_area], :remote => true do |f| %>
- <div class="form-horizontal"> 
+ <div class="form-horizontal">
     <div class="form-group">
      <div class="col-xs-2"></div>
       <%= f.label :Delivery_City, class:"control-label col-xs-2" %>
@@ -8,7 +8,7 @@
           <option value="">--Select Your City--</option>
           <% @city.each do |c| %>
           <option value="<%=c.id %>"><%= c.name %></option>
-          <% end %> 
+          <% end %>
         </select>
       </div>
     </div>
@@ -29,7 +29,7 @@
       <div class="form-group">
          <div class="col-xs-2"></div>
           <label for="pwd" class="control-label col-xs-2">Delivery Charges(in Rs):
-          </label>           
+          </label>
           <div class="col-xs-5">
             <%= f.text_field :delivery_charges, class: "form-control" %>
           </div>
@@ -41,6 +41,11 @@
           <%= f.text_field :min_order_amount, class: "form-control" %>
         </div>
       </div>
+      <div class="form-group">
+        <div class="col-xs-2"></div>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+        <div class="col-xs-5"></div>
+      </div>
       <div class="form-group"><center>
         <div class="col-sm-offset-2 col-sm-9">
           <div class="actions">
@@ -48,9 +53,8 @@
             <%= link_to 'Back', hotels_path, class: 'btn btn-outline btn-success' %>
           </div>
         </div></center>
-      </div>  
+      </div>
     <% end %>
   </div>
 
-      
-        
+

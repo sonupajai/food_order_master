@@ -3,6 +3,7 @@ class Area
   field :name, type: String
   field :pincode, type: Integer
   field :city_id, type: String
+  field :user_id, type: String
   belongs_to :city
   has_and_belongs_to_many :hotels
   validates :city_id, presence: true

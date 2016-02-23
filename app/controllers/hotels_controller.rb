@@ -1,11 +1,12 @@
-class HotelsController < ApplicationController  
+class HotelsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_city, only: [:edit, :new, :create,:update]
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
 
   def index
     @hotels = Hotel.order(name: :asc).page(params[:page]).per(5)
-  
   end
+
   def new
     @hotel = Hotel.new
   end
@@ -13,7 +14,6 @@ class HotelsController < ApplicationController
   end
   def create
     @hotel = Hotel.new(hotel_params)
-    @hotel.user = current_user
     respond_to do |format|
       if @hotel.save
         format.html { redirect_to hotels_path, notice: 'Hotel was successfully created.' }
@@ -55,6 +55,6 @@ class HotelsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
-      params.require(:hotel).permit(:name, :type, :city_id, :speciality, :address, :image)
+      params.require(:hotel).permit(:name, :type, :city_id, :speciality, :address, :image, :user_id)
     end
 end

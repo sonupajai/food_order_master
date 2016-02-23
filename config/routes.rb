@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   
   devise_for :users
 
+  resources :users, only: [:index, :edit, :update, :show]
+
+
   resources :homes do
     get :hotel_list, :on => :collection
   end
