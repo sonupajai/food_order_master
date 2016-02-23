@@ -59,12 +59,10 @@ GEM
     bson (3.2.6)
     bson_ext (1.5.1)
     builder (3.2.2)
-<<<<<<< HEAD
-    byebug (8.2.2)
-=======
+
     byebug (8.2.1)
     cancancan (1.13.1)
->>>>>>> master
+
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
