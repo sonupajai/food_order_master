@@ -1,5 +1,6 @@
 class DeliveryAreasController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
    before_action :set_delivery_area, only: [:edit, :update, :destroy]
    before_action :set_city
    before_action :set_hotel, only:[:edit, :new, :create, :update, :destroy]
