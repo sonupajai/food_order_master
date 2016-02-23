@@ -9,6 +9,8 @@ Rails.application.routes.draw do
      resources :delivery_areas do
     get "delete"
   end
+    post 'rating', to:'homes#create_rating'
+    get 'rating/show', to:'homes#show_rating'
   end
   
   resources :cities do
@@ -31,6 +33,7 @@ Rails.application.routes.draw do
   get 'reduce_order_item', to: 'menus#reduce_order_item'
   get 'confirm_order', to: 'menus#confirm_order'
   get 'delete_order_item', to: 'menus#delete_order_item'
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

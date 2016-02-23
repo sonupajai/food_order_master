@@ -10,6 +10,8 @@ class Hotel
   field :owner_id, type: String
   has_many :delivery_areas
   has_many :menus
+  has_many :orders
+  has_many :ratings
   belongs_to :user
   belongs_to :city
   has_and_belongs_to_many :areas
@@ -20,19 +22,5 @@ class Hotel
     DeliveryArea.where({ hotel_id: id, area_id: area_id }).try(:first)
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

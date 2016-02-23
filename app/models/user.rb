@@ -43,6 +43,8 @@ class User
 
   has_many :orders
 
+  has_one :rating
+
   after_create :sending_welcome_email
 
   def sending_welcome_email

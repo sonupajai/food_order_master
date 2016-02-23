@@ -1,8 +1,0 @@
-$("#menu_name").html("")
-<% if @menu_category.errors.any? %>
-  	<% @menu_category.errors.full_messages.each do |message| %>
-    	$("#ul_errors").append($("<li />").html("<%= message.html_safe %>"))
-	<% end %>
-<% else %>
-	$(".new-menu").html("<%= escape_javascript(render 'form') %>")
-<% end %>
