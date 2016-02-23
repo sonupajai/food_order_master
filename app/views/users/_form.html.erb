@@ -1,5 +1,5 @@
 
-
+<% if can? :manage, :all %>
 <%= form_for(@user, :html => {:class => 'form-horizontal'}) do |f| %>
   <div class="form-group">
     <center><br/>
@@ -22,4 +22,5 @@
       </div>
     </center>
   </div>
+<% end %>
 <% end %>
