@@ -13,8 +13,8 @@
     <tr class="product__price">
         <td >
             <div class="product__amount-controls">  
-                <a href="<%=reduce_order_item_path %>?item_id=<%=oi.menu_item_id %>" class="btn btn-xs btn-default" data-remote="true">-</a>
-                <a href="<%=add_order_item_path %>?item_id=<%=oi.menu_item_id %>" class="btn btn-xs btn-default" data-remote="true">+</a>               
+                <a href="<%=reduce_order_item_path %>?item_id=<%=oi.menu_item_id %>&hotel_id=<%=@hotel.id%>&area_id=<%=@area_id %>" class="btn btn-xs btn-default" data-remote="true">-</a>
+                <a href="<%=add_order_item_path %>?item_id=<%=oi.menu_item_id%>&hotel_id=<%=@hotel.id%>&area_id=<%=@area_id %>" data-remote="true" class="btn btn-xs btn-default">+</a>               
             </div>
         </td>
         <td>

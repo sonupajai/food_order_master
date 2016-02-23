@@ -1,41 +1,52 @@
 <ol class = "breadcrumb">
    <li><a href ="<%=root_path %>">Home</a></li>
-   <li><a href = "">Restuarants in  <%= @area.city.name%>   </a></li>
-   <li><%= @area.name%></li>
+   <li>Restuarants in  <%= @area.city.name.capitalize%></li>
+   <li><%= @area.name.capitalize%></li>
 </ol>
-<div class="min_div_height">
-<h2>Order from <%= @hotels.count.to_i%> restaurants in <%= @area.name%>, <%= @area.city.name%>.<a href="<%=root_path %>" class="btn btn-primary btn-sm btn-alt b">Change location</a></h2>
+<div class="container">
+  <h2>Order from <%= @hotels.count.to_i%> restaurants in <%= @area.name.capitalize%>, <%= @area.city.name%>. 
+    <a href="<%=root_path %>" class="btn btn-primary btn-sm btn-alt b">Change location</a>
+  </h2>
 <br/>
 <% @hotels.each do |hotel| %>
 <div class="row">
-  <div class="col-sm-2"></div>
+<div class="col-sm-1"></div>
   <div class="col-sm-10 border_div">
       <div class="col-sm-2 ">
-            <img width="100" height="100" src="<%=hotel.image.url %>" alt="Logo Image">
+        <img width="100" height="100" src="<%=hotel.image.url %>" alt="Logo Image">
       </div>
       <div class="col-sm-10" >
-         <div class="col-sm-8" >
-            <%= hotel.name%>
-            Speciality:<%= hotel.speciality %>
-            <div class="row">
-              <div class="col-sm-4">
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <span> 204 Ratings</span>
+         <div class="col-sm-10" >
+            <h4><%= hotel.name%></h4>
+            <b>Speciality: </b><%= hotel.speciality.capitalize %>
+            <div class="row" >
+              <div class="col-sm-3" id="star_no<%=hotel.id%>" >
+                
+                  <% for i in 1..5  %>
+                    <% if i<=get_star(hotel) %>
+                     <i class="fa fa-star" style="color: gold;"></i>                  
+                    <% else %>
+                    <i class="fa fa-star" style="color: grey;">  </i>                 
+                    <%end %>    
+                  <%end %> 
+              </div>
+              <div class="col-sm-2" style="    margin-left: -66px;">
+                   <a href="<%=hotel_rating_show_path(hotel)%>" data-remote="true" >
+                    <span id="star_no_link<%= hotel.id%>">
+                    <%= pluralize(hotel.ratings.count.round, "Rating") %>
+                    </span>
+                  </a>                 
               </div>
             </div>
           <div class="row">
            <div class="col-sm-3">
-              <span class="trans_span">Delivery in:</span>
+              <span class="trans_span"> Delivery In: </span>
            </div>
             <div class="col-sm-3">
-              <span class="trans_span"> Delivery fee:</span>
+              <span class="trans_span"> Delivery Fee: </span>
            </div>
             <div class="col-sm-3">
-              <span class="trans_span"> Min order:  </span>
+              <span class="trans_span"> Min Order:  </span>
            </div>
           </div>
           <div class="row">
@@ -50,16 +61,17 @@
              </div>
           </div>
           </div>
-          <div class="col-sm-4" >
-            <%= link_to 'Go To Menu', view_menu_hotel_menus_path(hotel_id: hotel.id, area_id: @area_id), class: 'btn btn-success btn-lg' %>
-              <!-- <a href="" class="">Go to menu</a> -->
+          <div class="col-sm-2" >
+            <%= link_to 'Go To Menu', view_menu_hotel_menus_path(hotel_id: hotel.id, area_id: @area_id), class: 'btn btn-success btn-lg', style: 'margin-top: 28px;' %>
           </div>
-      </div>
-       <hr>
-
+      </div> 
   </div>
+  <div class="col-sm-1"></div>
+</div>
+ <br>
+<% end %>
+  
+  <div id="rating-modal" class="modal fade"></div>
 
 </div>
 
- <br>
-  <% end %></div>

@@ -11,7 +11,7 @@
   <div class="form-group">
   
     <div class="control-label col-sm-2">
-      <%= f.label :Email %>
+      <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
     </div>
     <div class="col-sm-8">
       <%= f.email_field :email, class: "form-control", autofocus: true %>
@@ -20,7 +20,7 @@
 
   <div class="form-group">
     <div class="control-label col-sm-2">
-      <%= f.label :password %></br>
+      <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label></br>
       <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br/>  
@@ -41,11 +41,11 @@
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-8">
-      <center><%= f.submit "Sign up",class: "btn btn-primary btn-lg" %><br/><br>
+      <center><%= f.submit "Sign up",class: "btn btn-primary btn-lg" %>
   
       <%= render "devise/shared/links" %>
       </center>
     </div>
   </div>
-<% end %>
+   <% end %>
 </div>
