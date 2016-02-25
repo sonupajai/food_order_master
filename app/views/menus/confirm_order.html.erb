@@ -1,14 +1,32 @@
+<script>
+$(document).ready(function(){
+	$("#make_payment").hide();
+    $("#btn_proceed").click(function(){
+        $("#make_payment").show(1000);
+        $('html, body').animate({scrollTop: $("#make_payment").offset().top
+    	}, 2000); 
+    });
+    $('input:radio[name="optpay"]').change(
+    	function(){
+        if ($(this).val()== 'cash') {
+            $("#online_pay").hide();
+        }else
+        {
+        	$("#online_pay").show();
+        }
+    });
+});
+</script>
 <div class="container">
 <center>
-	 <h4><i class="fa fa-motorcycle" style="font-size:24px"></i> Estimated Delivery Time:  <%=@delivery_area.try(:delivery_time )%></h4>
+<h4><i class="fa fa-motorcycle" style="font-size:24px"></i> Estimated Delivery Time:  <%=@delivery_area.try(:delivery_time )%></h4>
   <div class="order_div" style="width:700px; float:none"> 
   	<div class="cart__content">
       	<div class="cart__header">
 	      <div class="cart__header__title">
 	        <h3 style="color:#009968!important">Your order 
 	          &nbsp;&nbsp;&nbsp;<i class="fa fa-shopping-bag"></i>
-          	</h3>
-          
+          	</h3>          
           </div>
 	    </div>
       	<div class="cart__products">
@@ -33,15 +51,8 @@
 			          </span>
 			        </td>
 			        <td class="product__quantity">
-			         <!-- <span class="product__quantity__wrapper"><%=oi.quantity%></span>-->
 			         <b>&nbsp;<%=oi.quantity%></b>
-			        </td>
-			         <td >
-			            <!--<div class="product__amount-controls">  
-			                <a href="<%=reduce_order_item_path %>?item_id=<%=oi.menu_item_id %>" class="btn btn-xs btn-default" data-remote="true">-</a>
-			                <a href="<%=add_order_item_path %>?item_id=<%=oi.menu_item_id %>" class="btn btn-xs btn-default" data-remote="true">+</a>               
-			            </div>-->
-			        </td>
+			        </td><td></td>
 			        <td>
 			        <span class="product__price__element" >&nbsp;
 			       Rs. <%=oi.menu_item.price.to_i*oi.quantity%>
@@ -67,20 +78,65 @@
 	        </tr>      
 	        <% if @sum>0 %> 
 		    <tr>
-		         <td colspan="4">
-		           <h3><span id="total_amount" style="float:right!important">Total: <%=@sum+@delivery_area.delivery_charges.to_i%></span></h3>
+		       <td colspan="4">
+		         <h3><span id="total_amount" style="float:right!important">Total: <%=@sum+=@delivery_area.delivery_charges.to_i%></span></h3>
 		       </td>
 		    </tr>   
 		    <% end %> 	
-		</table>   
-      
+		</table>       
       </div>   
       <hr>      
-    </div>
-   
+    </div>   
     <div class="cart__checkout">
-        <a class="btn btn-default  btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" href="<%confirm_order_path%>" style="background-color:#009968" id="btn_proceed">Proceed to Pay</a>
+        <button class="btn btn-primary  btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" style="background-color:#009968" id="btn_proceed">Proceed to Pay</button>
     </div>
   </div>
- </center>
+
+  <div id="make_payment"> 
+  <div class="order_div" style="width:700px; float:none ">
+  <h3> Make Payment</h3>
+   <div class="form-horizontal"  >
+   <div class="form-group">	  
+	    <label for="amount" class="col-xs-3">Amount</label>
+	   	<div class="col-xs-4"><b>
+	     <input class="form-control" type="text" name="amount" id="amount" required value="<%=@sum %>" disabled></b>
+	    </div>
+    </div>
+    <div class="form-group">     
+      <label for="card_no" class="col-xs-3">Payment mode</label>
+      <div class="col-xs-3">
+       <label class="radio-inline"><input type="radio" name="optpay" value="online" checked required>Card Payment</label>
+      </div>
+      <div class="col-xs-3">     
+		 <label class="radio-inline"><input type="radio" name="optpay" value="cash" required>Cash on delivery </label>	       	
+     </div>      
+    </div>
+    <div id="online_pay">
+    <div class="form-group">
+    	<label for="card_no" class="col-xs-3">Card Type</label>
+   		<div class="col-xs-8">
+    	 <select id='payment_mode' name="payment_mode" class="multipleSelect form-control" required >  
+		<option value="cd">Credit card</option>
+		<option value="dc">Debit card</option>
+		</select>
+     	</div>
+    </div>
+     <div class="form-group">	  
+	    <label for="card_no" class="col-xs-3">Card No</label>
+	   	<div class="col-xs-8">
+	     <input class="form-control" type="text" name="card_no" id="card_no" required>
+	    </div>
+    </div>
+    </div>
+    <div class="form-group">
+   		<div class="col-xs-2"></div>
+    	<div class="col-xs-8">
+			<a href="<%=order_place_path%>?hotel_id=<%=@hotel.id%>&area_id=<%=@area_id %>" class="btn btn-primary  btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" style="background-color:#009968" > Confirm Order </a>
+		</div>
+    </div>    
+   </div>	
+  </div>
+ <br/>
+</div>
+
 </div>

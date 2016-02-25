@@ -6,9 +6,9 @@
 
 <div class="row">
   <div class="col-sm-12">
-  <% if can? :create, @hotel %>
+ 
     <%= link_to 'Add+', new_hotel_path, { :class=>'btn btn-danger'} %>
-  <% end %>
+
   </div>
 </div>
 <br/>
@@ -21,19 +21,26 @@
             <h3 class="panel-title">
             <img width="100" height="50" src="<%=hotel.image.url %>" alt="Logo Image" class="img-thumbnail"> &nbsp
             <%= link_to hotel.name.capitalize , hotel %>(<%= hotel.type %>)
+            <%if hotel.status!="Approved" %>
+
+            <i class="fa fa-exclamation-triangle" style="color:orange"  data-toggle="tooltip" title="Approval pending"></i>
+            <% end %>
+            <%if hotel.status=="Approved" %>
             <span style="float: right;">
             <% if can? :update, hotel %>
               <%= link_to '', edit_hotel_path(hotel), class: "fa fa-edit" %>
             <% end %>
             <% if can? :destroy, hotel %>
             <%= link_to '', hotel, class: "fa fa-times", method: :delete, data: { confirm: 'Are you sure?' } %></span>
-            <% end %>
+            <% end %> <% end %>
             </h3>
           </div>
           <div class="panel-body">
             <b> Speciality: </b><%= hotel.speciality %> <br/>
             <b> Address: </b><%= hotel.address %> ,<%= hotel.city.try(:name) %><br/>
-            <% if can? :update, hotel %>
+           
+            <% if can? :update, hotel &&  %>
+             <%if hotel.status=="Approved" %>
                <b>
                 <a href="<%= new_hotel_delivery_area_path(hotel)%>" class="label label-info" >Delivery Location <i class="fa fa-plus"></i>
                 </a>&nbsp;&nbsp;
@@ -41,6 +48,7 @@
                 <i class="fa fa-plus"></i>
                 </a>
               </b>
+              <% end %>
             <% end %>
           </div>
       </div>

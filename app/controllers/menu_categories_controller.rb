@@ -1,15 +1,11 @@
 class MenuCategoriesController < ApplicationController
   before_action :set_menu_category, only: [:show, :edit, :update, :destroy]
 
-  # GET /menu_categorys
-  # GET /menu_categorys.json
   def index
     @menu_categories = MenuCategory.all
     @menu_category = MenuCategory.new
   end
 
-  # GET /menu_categorys/1
-  # GET /menu_categorys/1.json
   def show
   end
 
@@ -21,9 +17,6 @@ class MenuCategoriesController < ApplicationController
   # GET /menu_categorys/1/edit
   def edit
   end
-
-  # POST /menu_categorys
-  # POST /menu_categorys.json
   def create
     @menu_category = MenuCategory.new(menu_category_params)
     @menu_category.save

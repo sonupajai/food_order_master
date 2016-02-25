@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
   root 'homes#index'
-
+  resources :orders do
+  get "order_status_update"
+  get "auth_order"
+ 
+  end
+  resources :notifications
+ 
   resources :hotels do
+  get "update_status"
     resources :menus do
       get :view_menu, :on => :collection
       resources :menu_items
     end
      resources :delivery_areas do
     get "delete"
+
   end
     post 'rating', to:'homes#create_rating'
     get 'rating/show', to:'homes#show_rating'
@@ -33,8 +41,14 @@ Rails.application.routes.draw do
   get 'reduce_order_item', to: 'menus#reduce_order_item'
   get 'confirm_order', to: 'menus#confirm_order'
   get 'delete_order_item', to: 'menus#delete_order_item'
+  get 'order_place', to: 'menus#placed_order'
+  get "authorize_hotels", to: 'hotels#authorized_hotels'
+  get "auth_hotel", to: 'hotels#auth_hotel'
+get 'process_order', to:'orders#process_order'
+  
 
   
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

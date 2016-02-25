@@ -4,7 +4,6 @@ class MenusController < ApplicationController
   before_action :set_order_id, only: [:view_menu, :add_order_item, :reduce_order_item ]
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
-
   def index
     @menus = @hotel.menus.all
     @menu = Menu.new
@@ -16,7 +15,6 @@ class MenusController < ApplicationController
   end
   def edit
   end
-
   def create
     @menu = @hotel.menus.build(menu_params)
     @menu.hotel_id=@hotel.id
@@ -35,10 +33,16 @@ class MenusController < ApplicationController
     @menu.destroy
   end
   def view_menu
+
     @menus = @hotel.menus.all
     @order_items=@hotel.orders.find(session[:order_id]).try(:order_items) || []
-   # @order=Order.find(session[:order_id])
-    #@order_items=@order.order_items.all
+       
+    if session[:order_id]!=nil
+    @order=Order.find(session[:order_id])
+    if @order.hotel!=@hotel       
+      @order.order_items.all.destroy
+    end    
+    end
     @sum=0
     @area_id=params[:area_id]
   end
@@ -88,6 +92,17 @@ class MenusController < ApplicationController
      @order_item.destroy 
      redirect_to :back
   end
+  def placed_order
+     @order=Order.find(session[:order_id])
+     @order.update(status: "confirm")
+     session[:order_id]=nil 
+    @notification=Notification.new
+    @notification.message="Your order has been confirmed."
+    @notification.user=current_user
+    @notification.to=@current_user.id
+    @notification.save
+  end
+ 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_menu
@@ -103,11 +118,12 @@ class MenusController < ApplicationController
     end
     def set_order_id
       if session[:order_id]==nil 
+        current_user.orders.where(status: "new").destroy
         @order = Order.new
         @order.user=current_user
         @order.hotel= @hotel
         @order.save!
         session[:order_id]=@order.id     
       end
+    end
   end
-end

@@ -19,5 +19,6 @@
 //= require turbolinks
 //= require jquery.editable-select
 //= require bootstrap-sprockets
+//= require dataTables/jquery.dataTables
 //= require_tree .
 
