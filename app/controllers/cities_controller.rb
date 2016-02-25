@@ -1,5 +1,6 @@
 class CitiesController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   before_action :set_city, only: [:show, :edit, :update, :destroy]
   before_action :set_all_city, only: [ :index, :create, :update, :destroy]
 
