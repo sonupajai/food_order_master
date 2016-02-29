@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'lastseen/new'
+
   root 'homes#index'
   resources :orders do
   get "order_status_update"
@@ -36,7 +38,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:index, :edit, :update, :show]
   resources :homes do
-    get :hotel_list, :on => :collection
+  get :hotel_list, :on => :collection
   end
   get "authorize_hotels", to: 'hotels#authorized_hotels'  
   get 'process_order', to:'orders#process_order'

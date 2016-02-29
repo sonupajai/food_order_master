@@ -10,5 +10,11 @@ class ApplicationController < ActionController::Base
   	Notification.where(to: current_user.id).all
   	end
   end
+
   helper_method :user_notifications
+  def notification_count
+      lastsen=current_user.lastseen
+     @not_tot = Notification.where(:created_at.gte => (lastsen.created_at)).all.count.to_i
+  end
+   helper_method :notification_count
 end
