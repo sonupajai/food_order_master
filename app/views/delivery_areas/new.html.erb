@@ -1,4 +1,8 @@
-
+<script>
+$(document).ready(function() {
+    $('#data1').DataTable();
+} );
+</script>
 <ol class = "breadcrumb">
    <li><a href ="<%=root_path %>">Home</a></li>
    <li><a href = "#">Restaurants </a></li>
@@ -11,7 +15,7 @@
 	<%= render 'form' %>
   </div>
 <hr>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" id="data1">
   	<thead>
 	    <tr>
 	      <th>Delivery Location</th>

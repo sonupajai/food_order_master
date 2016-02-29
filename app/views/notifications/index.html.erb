@@ -1,0 +1,22 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+ <table class="table table-bordered table-striped ">
+  <thead>
+    <tr>
+      <th colspan="2">Notification</th>     
+    </tr>
+  </thead>
+  <tbody>
+    <% user_notifications.each do |notification| %>
+      <tr>
+        <td><%= notification.message %></td>
+        <td><%= notification.created_at %></td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+</div>
+
+

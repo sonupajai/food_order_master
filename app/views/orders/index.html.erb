@@ -1,0 +1,31 @@
+<script>
+$(document).ready(function() {
+    $('#data1').DataTable();
+} );
+</script>
+<div class="container">
+<br/>
+<center><h3>Your orders</h3></center>
+<table class="table table-bordered table-striped" id="data1">
+  	<thead>
+	    <tr>
+	      <th>Order_id</th>
+	      <th>Order Date</th>
+	      <th>Hotel</th>
+	      <th>Amount</th>
+	      <th>Status</th>
+	    </tr>
+ 	</thead>
+	<tbody class="dl_area_index">
+		<% @orders.each do |od| %>
+		  <tr>
+		  	<td><%=od.id %></td>
+		    <td><%=od.created_at%></td>		    
+		  	<td><%=od.hotel.name %></td>
+		    <td><%=order_amount(od)%></td>
+		    <td><%=od.status%></td>
+		  </tr>
+		<% end %>
+	</tbody>
+</table>
+</div>

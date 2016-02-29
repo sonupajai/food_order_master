@@ -42,8 +42,8 @@ class User
   before_create :set_default_role
 
   has_many :orders
-
-  has_one :rating
+  has_many :notifications
+  has_many :ratings
 
   after_create :sending_welcome_email
 

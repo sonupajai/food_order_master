@@ -2,7 +2,7 @@ class HotelsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
   before_action :set_city, only: [:edit, :new, :create,:update]
-  before_action :set_hotel, only: [:show, :edit, :update, :destroy]
+  before_action :set_hotel, only: [:show, :edit, :update, :destroy, :auth_hotel]
 
   def index
     @hotels = Hotel.order(name: :asc).page(params[:page]).per(5)
@@ -17,6 +17,11 @@ class HotelsController < ApplicationController
     @hotel = Hotel.new(hotel_params)
     respond_to do |format|
       if @hotel.save
+        @notification=Notification.new
+        @notification.message="#{@hotel.name} hotel's approval pending"
+        @notification.user=current_user
+        @notification.to="admin"
+        @notification.save
         format.html { redirect_to hotels_path, notice: 'Hotel was successfully created.' }
         format.json { render :show, status: :created, location: @hotel }
       else
@@ -45,7 +50,23 @@ class HotelsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def authorized_hotels
+      @hotels=Hotel.where(:status.ne=>"pending").all
+  end
+  def update_status   
+    status=params[:status];
+    @hotel = Hotel.find(params[:hotel_id])
+    @hotel.status=status
+    @hotel.update
+    @notification=Notification.new
+    @notification.message="Your #{@hotel.name} restaurant #{status}"
+    @notification.user=current_user
+    @notification.to=@hotel.user.id
+    @notification.save
+    redirect_to authorize_hotels_path
+  end
+  def auth_hotel  
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hotel

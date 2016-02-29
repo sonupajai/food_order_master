@@ -31,8 +31,16 @@
   	<% j=j+1 %>
   	<div id="menu<%=j%>">
       <h3><%= menu.name.capitalize %></h3>
+<<<<<<< HEAD
+      <% if menu.image.url!='/images/original/missing.png'%>
+
+      <img  src="<%= menu.image.url %>" alt="Logo Image" class="img-thumbnail" style="width:600px; height:100px">
+      <% end %><br/>
+      <% menu.menu_items.each do |menuitem| %> 
+=======
       <img  src="<%= menu.image.url %>" alt="Logo Image" class="img-thumbnail" style="width:600px; height:100px"><br/>
       <% menu.menu_items.each do |menuitem| %>
+>>>>>>> master
       <div class="row" >
         <div class="col-xs-5">
         	<h4><%= menuitem.name %></h4>
