@@ -31,16 +31,12 @@
   	<% j=j+1 %>
   	<div id="menu<%=j%>">
       <h3><%= menu.name.capitalize %></h3>
-<<<<<<< HEAD
       <% if menu.image.url!='/images/original/missing.png'%>
 
       <img  src="<%= menu.image.url %>" alt="Logo Image" class="img-thumbnail" style="width:600px; height:100px">
       <% end %><br/>
       <% menu.menu_items.each do |menuitem| %> 
-=======
-      <img  src="<%= menu.image.url %>" alt="Logo Image" class="img-thumbnail" style="width:600px; height:100px"><br/>
-      <% menu.menu_items.each do |menuitem| %>
->>>>>>> master
+
       <div class="row" >
         <div class="col-xs-5">
         	<h4><%= menuitem.name %></h4>
@@ -48,7 +44,7 @@
         <div class="col-xs-4"><h4><u><%= menuitem.quantity %></u></h4></div>
         <div class="col-xs-2">
           <h5>RS.<%= menuitem.price %>
-		      <a href="<%=add_order_item_path %>?item_id=<%=menuitem.id%>&hotel_id=<%=@hotel.id%>&area_id=<%=@area_id %>" style="color:#009968!important; float:right" data-remote="true">
+		      <a href="<%=hotel_add_order_item_path(@hotel) %>?item_id=<%=menuitem.id%>&area_id=<%=@area_id %>" style="color:#009968!important; float:right" data-remote="true">
             <i class="fa fa-plus-circle fa-lg"></i>
 		      </a>
           </h5>
@@ -75,7 +71,7 @@
       <div class="cart__products">
         <table id="myTable" class="table table-fixedheader table-striped">
           <tbody id="order_items">
-          <%=render 'order_items'%>
+          <%=render 'hotels/order_items'%>
           </tbody>
         </table>
       </div>
@@ -98,11 +94,11 @@
       </ul>
     </div>
     <div class="cart__checkout">
-      <% if @sum+@delivery_area.delivery_charges.to_i>@delivery_area.min_order_amount.to_i %>
-        <a class="btn btn-default  btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" href="<%=confirm_order_path%>?hotel_id=<%=@hotel.id%>&area_id=<%=@area_id %>" style="background-color:#009968" id="btn_proceed">
+      <% if @sum+@delivery_area.delivery_charges.to_i>=@delivery_area.min_order_amount.to_i %>
+        <a class="btn btn-default  btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" href="<%=hotel_confirm_order_path(@hotel)%>?area_id=<%=@area_id %>" style="background-color:#009968" id="btn_proceed">
             Proceed to checkout
         <% else %>
-        <a class="btn btn-default disabled btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" href="<%=confirm_order_path%>?hotel_id=<%=@hotel.id%>&area_id=<%=@area_id %>" style="background-color:#009968" id="btn_proceed">
+        <a class="btn btn-default disabled btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" href="<%=hotel_confirm_order_path(@hotel)%>?area_id=<%=@area_id %>" style="background-color:#009968" id="btn_proceed">
             Proceed to checkout
         <% end %>
         </a>

@@ -23,7 +23,7 @@
               <div class="col-sm-3" id="star_no<%=hotel.id%>" >
                 
                   <% for i in 1..5  %>
-                    <% if i<=get_star(hotel) %>
+                    <% if i<=hotel.ratings.avg(:rating_no).to_i %>
                      <i class="fa fa-star" style="color: gold;"></i>                  
                     <% else %>
                     <i class="fa fa-star" style="color: grey;">  </i>                 

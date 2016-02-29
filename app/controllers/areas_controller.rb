@@ -1,13 +1,14 @@
 class AreasController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  before_action :set_city, only: [:index,:edit, :new, :create, :update]
   before_action :set_area, only: [:show, :edit, :update, :destroy]
   before_action :set_city
   def index
     @areas = @city.areas.all.order_by(:name => 'asc')
     @area = Area.new
   end
+
+  
 
   def show
   end
@@ -21,7 +22,7 @@ class AreasController < ApplicationController
 
   def create
     @area = Area.new(area_params)
-    @area.city_id=params[:city_id]
+    @area.city=@city
    if @area.save
      @areas = @city.areas.all
    end
@@ -37,7 +38,7 @@ class AreasController < ApplicationController
     if @area.destroy
       @areas = @city.areas.all
       @area = Area.new
-  end
+    end
   end
 
   def delete
@@ -55,6 +56,6 @@ class AreasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def area_params
-      params.require(:area).permit(:name, :pincode, :city_id, :user_id)
+      params.require(:area).permit(:name, :pincode)
     end
 end

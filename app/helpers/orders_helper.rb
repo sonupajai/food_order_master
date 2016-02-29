@@ -1,10 +1,5 @@
 module OrdersHelper
 	def order_amount(od)
-		sum=0
-		 @orderitems= od.order_items.all
-		 @orderitems.each do |oi|
-		 	sum+=oi.menu_item.price
-		 end
-		 sum
+		MenuItem.in(order_item_id: od.order_item_ids).sum(:price)
 	end
 end

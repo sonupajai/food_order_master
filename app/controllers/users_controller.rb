@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
 	before_action :set_user, only: [:edit, :update, :show]
 	def index
-	  @users = User.all
 	  @users = User.order(name: :asc).page(params[:page]).per(5)
 
 	end

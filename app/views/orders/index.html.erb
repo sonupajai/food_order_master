@@ -5,6 +5,7 @@ $(document).ready(function() {
 </script>
 <div class="container">
 <br/>
+
 <center><h3>Your orders</h3></center>
 <table class="table table-bordered table-striped" id="data1">
   	<thead>
@@ -22,9 +23,10 @@ $(document).ready(function() {
 		  	<td><%=od.id %></td>
 		    <td><%=od.created_at%></td>		    
 		  	<td><%=od.hotel.name %></td>
-		    <td><%=order_amount(od)%></td>
+		    <td><%=od.order_items.sum(&:menu_item_price)%></td>
 		    <td><%=od.status%></td>
 		  </tr>
+
 		<% end %>
 	</tbody>
 </table>

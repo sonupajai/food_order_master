@@ -18,7 +18,6 @@ gem 'kaminari'
 gem 'remotipart'
 gem 'simple_form'
 
-
 gem 'cancancan'
 
 # Use Uglifier as compressor for JavaScript assets

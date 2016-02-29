@@ -8,7 +8,7 @@ $(document).ready(function() {
 	<div class="col-xs-2"></div>
 	 <div class="col-xs-8">
 	 <center>
-	 <h3>Approval pending</h3>
+	 <h3>Approval Pending</h3>
 	 <table class="table table-bordered table-striped " style="float:none!important" id="data1">
 	  <thead>
 	    <tr>
@@ -17,16 +17,16 @@ $(document).ready(function() {
 	    </tr>
 	  </thead>
 	  <tbody>
-	  	 <% @hotels.each do |hotel| %>
+	  	<% @hotels.each do |hotel| %>
 	      <tr>
 	        <td><%= hotel.name %></td>
 	        <td>
 	    <%if hotel.status=="Pending" %>
-	     	<a data-toggle="modal" href="<%=auth_hotel_path%>?id=<%=hotel.id%>" class="label label-danger" data-remote="true"><%=hotel.status %></a>
+	     	<a data-toggle="modal" href="<%=hotel_auth_hotel_path(hotel)%>" class="label label-danger" data-remote="true"><%=hotel.status %></a>
 	    <% elsif hotel.status=="Approved" %>
-			<a data-toggle="modal" href="<%=auth_hotel_path%>?id=<%=hotel.id%>" class="label label-success" data-remote="true"><%=hotel.status %></a>
+			<a data-toggle="modal" href="<%=hotel_auth_hotel_path(hotel)%>" class="label label-success" data-remote="true"><%=hotel.status %></a>
 		<%else hotel.status=="Rejected" %>	   
-			<a data-toggle="modal" href="<%=auth_hotel_path%>?id=<%=hotel.id%>" class="label label-info" data-remote="true"><%=hotel.status %></a>
+			<a data-toggle="modal" href="<%=hotel_auth_hotel_path(hotel)%>" class="label label-info" data-remote="true"><%=hotel.status %></a>
 		<% end %>
      		</td>	       
 	      </tr>

@@ -43,7 +43,7 @@ $(document).ready(function(){
 			        <td class="product__title ">
 			          <span class="product__title__name">
 			          <h4>
-			           <a href="<%=delete_order_item_path%>?item_id=<%=oi.menu_item_id %>&hotel_id=<%=@hotel_id %>&area_id=<%=@area_id %>" >
+			           <a href="<%=hotel_delete_order_item_path(@hotel)%>?item_id=<%=oi.menu_item_id %>&area_id=<%=@area_id %>" >
 			            <i class="fa fa-times-circle" style="color:red;"></i>
 			           </a>
 			            <%=oi.menu_item.name.capitalize%>
@@ -131,7 +131,7 @@ $(document).ready(function(){
     <div class="form-group">
    		<div class="col-xs-2"></div>
     	<div class="col-xs-8">
-			<a href="<%=order_place_path%>?hotel_id=<%=@hotel.id%>&area_id=<%=@area_id %>" class="btn btn-primary  btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" style="background-color:#009968" > Confirm Order </a>
+			<a href="<%=hotel_placed_order_path(@hotel)%>?area_id=<%=@area_id %>" class="btn btn-primary  btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" style="background-color:#009968" > Confirm Order </a>
 		</div>
     </div>    
    </div>	
