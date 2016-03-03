@@ -1,9 +1,0 @@
-$("#ul_errors").html("")
-<% if @delivery_area.errors.any? %>
-  	<% @delivery_area.errors.full_messages.each do |message| %>
-    	$("#ul_errors").append($("<li />").html("<%= message.html_safe %>"))
-	<% end %>
-<% else %>
-	$(".dl_area_index").html("<%= escape_javascript(render 'index') %>")
-	
-<% end %>

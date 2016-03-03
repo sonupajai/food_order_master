@@ -1,16 +1,12 @@
 class UsersController < ApplicationController
 
 	before_filter :check_user
-
 	before_action :set_user, only: [:edit, :update, :show]
 	def index
-	  @users = User.all
 	  @users = User.order(name: :asc).page(params[:page]).per(5)
-
 	end
 
 	def edit
-
 	end
 
 	def update
@@ -26,21 +22,18 @@ class UsersController < ApplicationController
     end
 	end
 	def show
-
 	end
-
 	private
 		def set_user
 			@user = User.find(params[:id])
 		end
 
 		def user_params
-      params.require(:user).permit(:role)
-    end
-
-    def check_user
-    	if !current_user.admin?
-    		redirect_to root_path, notice: 'Access Denied.'
-    	end
-    end
+     		params.require(:user).permit(:role)
+   		end
+	    def check_user
+	    	if !current_user.admin?
+	    		redirect_to root_path, notice: 'Access Denied.'
+	    	end
+	    end
 end

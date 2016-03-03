@@ -26,7 +26,7 @@ class User
   field :last_sign_in_at,    type: Time
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
-  field :role,               type: String
+  field :role,               type: String, default: "normal_user"
   ## Confirmable
   # field :confirmation_token,   type: String
   # field :confirmed_at,         type: Time
@@ -38,22 +38,16 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
   has_many :hotels
-
-  before_create :set_default_role
-
   has_many :orders
   has_many :notifications
   has_many :ratings
-
+  has_one  :lastseen
   after_create :sending_welcome_email
 
   def sending_welcome_email
     UserNotifier.welcome_email(self).deliver
   end
 
-  def set_default_role
-    self.role = "normal_user" if self.role.blank?
-  end
 
   ROLES.each do |r_name|
     define_method("#{r_name}?") do
