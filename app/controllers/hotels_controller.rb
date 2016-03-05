@@ -16,13 +16,10 @@ class HotelsController < ApplicationController
   end
   def create
     @hotel = Hotel.new(hotel_params)
+    @hotel.user = current_user
     respond_to do |format|
       if @hotel.save
-        @notification=Notification.new
-        @notification.message="#{@hotel.name} hotel's approval pending"
-        @notification.user=current_user
-        @notification.to="admin"
-        @notification.save
+        NotificationJob.perform_now(@hotel.id.to_s, current_user.id.to_s)
         format.html { redirect_to hotels_path, notice: 'Hotel was successfully created.' }
         format.json { render :show, status: :created, location: @hotel }
       else
@@ -54,7 +51,12 @@ class HotelsController < ApplicationController
   def authorized_hotels
       @hotels=Hotel.where(:status.ne=>"pending").all
   end
-  def update_status   
+  def update_status
+    @notification_statuses = Notification.where({to: "admin", status: "unread"}).all
+    @notification_statuses.each do |not_stat|
+      not_stat.status = "read"
+      not_stat.save!
+    end
     status=params[:status];
     @hotel = Hotel.find(params[:hotel_id])
     @hotel.status=status
@@ -63,6 +65,7 @@ class HotelsController < ApplicationController
     @notification.message="Your #{@hotel.name} restaurant #{status}"
     @notification.user=current_user
     @notification.to=@hotel.user.id
+    @notification.status = "read"
     @notification.save
     redirect_to authorize_hotels_path
   end
@@ -135,7 +138,7 @@ class HotelsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
-      params.require(:hotel).permit(:name, :type, :city_id, :speciality, :address, :image)
+      params.require(:hotel).permit(:name, :type, :city_id, :speciality, :address, :image, :user_id)
     end
   
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
   get 'lastseen/new'
 
   root 'homes#index'
@@ -42,5 +43,5 @@ Rails.application.routes.draw do
   end
   get "authorize_hotels", to: 'hotels#authorized_hotels'  
   get 'process_order', to:'orders#process_order'
-  
+  mount Sidekiq::Web => '/sidekiq'
 end
