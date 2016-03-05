@@ -39,7 +39,7 @@
             <b> Speciality: </b><%= hotel.speciality %> <br/>
             <b> Address: </b><%= hotel.address %> ,<%= hotel.city.try(:name) %><br/>
            
-            <% if can? :update, hotel &&  %>
+            <% if can? :update, hotel %>
              <%if hotel.status=="Approved" %>
                <b>
                 <a href="<%= new_hotel_delivery_area_path(hotel)%>" class="label label-info" >Delivery Location <i class="fa fa-plus"></i>
