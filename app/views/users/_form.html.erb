@@ -1,0 +1,26 @@
+
+<% if can? :manage, :all %>
+<%= form_for(@user, :html => {:class => 'form-horizontal'}) do |f| %>
+  <div class="form-group">
+    <center><br/>
+      <div class="control-label col-xs-6">
+        <%= f.label :Role %>
+      </div>
+      <div class="col-xs-12">
+        <%= f.collection_select(:role, User::ROLES, :to_s, lambda{|i| i.to_s.humanize})%>
+      </div>
+    </center>
+  </div>
+
+  <div class="form-group">
+    <center><br/><br/><br/>
+      <div class="col-sm-offset-2 col-sm-8">
+        <div class="actions">
+          <%= f.submit "Save", class: 'btn btn-outline btn-success'%>
+          <%= link_to 'Back', users_path, class: 'btn btn-outline btn-success' %>
+        </div>
+      </div>
+    </center>
+  </div>
+<% end %>
+<% end %>

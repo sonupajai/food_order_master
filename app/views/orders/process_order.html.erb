@@ -1,0 +1,47 @@
+<script>
+$(document).ready(function() {
+    $('#data1').DataTable();
+    $('#data1_length').hide();
+} );
+</script>
+<div class="container"><br/>	
+	<div class="col-xs-2"></div>
+	 <div class="col-xs-8">
+	 <center>
+	 <h3>Order Approval</h3>
+	 <table class="table table-bordered table-striped " style="float:none!important" id="data1">
+	  <thead>
+	    <tr>
+	      <th >Order no</th> 
+	      <th >User Name</th>  
+	      <th >Status</th> 
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<%@orders.each do |od| %>
+		<% if current_user.role=="admin" || od.hotel.user.id==current_user.id %>		
+	 	<tr>
+	 		<td><%=od.id%></td>
+	        <td><%=od.hotel.user.email%></td>	     
+	        <td>
+	        <% if od.status=="Cancelled" %>
+	    	<a data-toggle="modal" href="<%=order_auth_order_path(od)%>" class="label label-danger" data-remote="true"><%=od.status %></a>
+	    	<% elsif od.status=="Dispatch" %>
+	    	<a data-toggle="modal" href="<%=order_auth_order_path(od)%>" class="label label-warning" data-remote="true"><%=od.status %></a>
+	    	<% elsif od.status=="confirm" %>
+	    	<a data-toggle="modal" href="<%=order_auth_order_path(od)%>" class="label label-info" data-remote="true"><%=od.status %></a>
+	    	<% elsif od.status=="Processed" %>
+	    	<a data-toggle="modal" href="<%=order_auth_order_path(od)%>" class="label label-info" data-remote="true"><%=od.status %></a>
+	    	<% elsif od.status=="Delivered" %>
+	    	<a data-toggle="modal" disabled class="label label-success" data-remote="true"><%=od.status %></a>
+	    	<% end %>
+     		</td>	       
+	    </tr>
+	    <% end %>
+		<% end %>	     
+	  </tbody>
+	  </table>
+	 </center>
+	</div>
+	</div>	
+ <div class="modal fade" id="modal_status" role="dialog"></div>

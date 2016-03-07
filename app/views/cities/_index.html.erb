@@ -1,0 +1,37 @@
+<%i=0 %>
+<% @cities.each do |city| %>
+	<% i=i+1 %>
+	<tr>
+	    <td colspan="2">
+		   	<a href="javascript:void(0)" data-toggle="collapse" data-target=".display<%=i%>"><%= city.name %></a>
+	    	<span style="float:right"><a href="<%=city_areas_path(city) %>" class="label label-info">Location <i class="fa fa-plus"></i></a>
+	    	</span>
+	    </td>
+	    <% if can? :update, city %>
+	    	<td><%= link_to '', edit_city_path(city,format: 'js'), remote:true, class: "fa fa-edit" %>
+	    	</td>
+	    <% end %>
+	    <% if can? :destroy, city %>
+	    	<td><%= link_to "", city_delete_path(city), remote: true, class: "fa fa-times" %>
+	    	</td>
+	    <% end %>
+	</tr>
+	<% if city.areas.empty? then %>
+	<tr class="collapse display<%=i%>">
+		<td colspan="4" >No Location found for this city</td>
+	</tr>
+	<%else %>
+	<% index=0%>
+	<% city.areas.each do |l| %>
+		<% index=index+1 %>
+	  	<tr class="collapse display<%=i%>">
+		  <td ><%=index %></td>
+		  <td ><%=l.name%></td>
+		  <% if can? :update || :destroy , @city %>
+		  <td></td><td></td>
+		  <% end %>
+	  	</tr>
+	<%end%>
+	<% end %>
+<% end %>
+

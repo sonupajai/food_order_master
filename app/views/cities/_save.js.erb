@@ -1,0 +1,9 @@
+$("#ul_errors").html("")
+<% if @city.errors.any? %>
+  	<% @city.errors.full_messages.each do |message| %>
+    	$("#ul_errors").append($("<li />").html("<%= message.html_safe %>"))
+	<% end %>
+<% else %>
+	$(".city-index").html("<%= escape_javascript(render 'index') %>")
+	
+<% end %>

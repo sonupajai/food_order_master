@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Paperclip
 
+  ROLES = %i[admin owner normal_user]
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -11,7 +12,7 @@ class User
   ## Database authenticatable
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
-  field :user_type, type: String, default: ""
+  field :user_type,          type: String, default: ""
   ## Recoverable
   field :reset_password_token,   type: String
   field :reset_password_sent_at, type: Time
@@ -25,7 +26,7 @@ class User
   field :last_sign_in_at,    type: Time
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
-
+  field :role,               type: String, default: "normal_user"
   ## Confirmable
   # field :confirmation_token,   type: String
   # field :confirmed_at,         type: Time
@@ -37,4 +38,33 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
   has_many :hotels
+  has_many :orders
+  has_many :notifications
+  has_many :ratings
+  has_one  :lastseen
+  after_create :sending_welcome_email
+
+  def sending_welcome_email
+    UserNotifier.welcome_email(self).deliver
+  end
+
+
+  ROLES.each do |r_name|
+    define_method("#{r_name}?") do
+      self.role == "#{r_name}"
+    end
+  end
+
+  # because of metaprogramming below 3 methods became simple above code
+  # def admin?
+  #   self.role == "admin"
+  # end
+
+  # def owner?
+  #   self.role == "owner"
+  # end
+
+  # def normal_user?
+  #   self.role == "normal_user"
+  # end
 end

@@ -1,30 +1,30 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Areas</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Pincode</th>
-      <th>City</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @areas.each do |area| %>
+<ol class = "breadcrumb">
+   <li><a href ="<%=root_path %>">Home</a></li>
+   <li class="active"><b><%= @city.name %></b></li>
+   <li class="active"><b>Location</b></li>
+</ol>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <%= link_to 'Add+', new_city_area_path(@city),remote:true, class: 'btn btn-outline btn-danger' %><br/><br/>
+  <table class="table table-bordered table-striped">
+    <thead>
       <tr>
-        <td><%= area.name %></td>
-        <td><%= area.pincode %></td>
-        <td><%= area.city_id %></td>
-        <td><%= link_to 'Show', area %></td>
-        <td><%= link_to 'Edit', edit_area_path(area) %></td>
-        <td><%= link_to 'Destroy', area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Location</th>
+        <th>Pincode</th>
+        <% if can? :update, @area %>
+          <th>Update</th>
+        <% end %>
+        <% if can? :destroy, @area %>
+          <th>Delete</th>
+        <% end %>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody class="area-index">
+      <%= render "index" %>
+    </tbody>
+  </table>
+  <div id="area-modal" class="modal fade">
 
-<br>
-<%= link_to 'New Area', new_area_path %>
+  </div>
+</div>
+

@@ -1,74 +1,68 @@
 class MenusController < ApplicationController
+  before_filter :authenticate_user!
+  before_action :set_hotel
+  before_action :set_order_id, only: [:view_menu]
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
-  # GET /menus
-  # GET /menus.json
   def index
-    @menus = Menu.all
-  end
-
-  # GET /menus/1
-  # GET /menus/1.json
-  def show
-  end
-
-  # GET /menus/new
-  def new
+    @menus = @hotel.menus.all
     @menu = Menu.new
   end
-
-  # GET /menus/1/edit
-  def edit
+  def new
+    @menu = @hotel.menus.build
   end
-
-  # POST /menus
-  # POST /menus.json
   def create
-    @menu = Menu.new(menu_params)
-
-    respond_to do |format|
-      if @menu.save
-        format.html { redirect_to @menu, notice: 'Menu was successfully created.' }
-        format.json { render :show, status: :created, location: @menu }
-      else
-        format.html { render :new }
-        format.json { render json: @menu.errors, status: :unprocessable_entity }
-      end
+    @menu = @hotel.menus.build(menu_params)
+    @menu.hotel_id=@hotel.id
+    if @menu.save
+    @menus = @hotel.menus.all
     end
   end
 
-  # PATCH/PUT /menus/1
-  # PATCH/PUT /menus/1.json
   def update
-    respond_to do |format|
-      if @menu.update(menu_params)
-        format.html { redirect_to @menu, notice: 'Menu was successfully updated.' }
-        format.json { render :show, status: :ok, location: @menu }
-      else
-        format.html { render :edit }
-        format.json { render json: @menu.errors, status: :unprocessable_entity }
-      end
-    end
+   if  @menu.update(menu_params)
+    @menus = @hotel.menus.all
+   end
   end
 
-  # DELETE /menus/1
-  # DELETE /menus/1.json
   def destroy
     @menu.destroy
-    respond_to do |format|
-      format.html { redirect_to menus_url, notice: 'Menu was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
+  def view_menu
 
+    @menus = @hotel.menus.all
+    @order_items=@hotel.orders.find(session[:order_id]).try(:order_items) || []
+    if session[:order_id]!=nil
+    @order=Order.find(session[:order_id])
+    if @order.hotel!=@hotel       
+      @order.order_items.all.destroy
+    end    
+    end
+    @sum=0
+    @area_id=params[:area_id]
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_menu
-      @menu = Menu.find(params[:id])
+      @menu = @hotel.menus.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def menu_params
-      params.require(:menu).permit(:Menu_name, :description)
+    def set_hotel
+      @hotel = Hotel.find(params[:hotel_id])
+      @delivery_area = DeliveryArea.where({ hotel_id: params[:hotel_id], area_id: params[:area_id] }).try(:first)
     end
-end
+    def menu_params
+      params.require(:menu).permit(:name, :image)
+    end
+    def set_order_id
+      if session[:order_id]==nil 
+        current_user.orders.where(status: "new").destroy
+        @order = Order.new
+        @order.user=current_user
+        @order.hotel= @hotel
+        @order.save!
+        session[:order_id]=@order.id
+      end
+    end
+  
+  end

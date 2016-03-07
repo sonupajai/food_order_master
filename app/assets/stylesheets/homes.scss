@@ -1,3 +1,15 @@
 // Place all the styles related to the Homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+   
+.border_div {
+    border-bottom: 1px solid black;
+    padding-bottom: 12px;
+  }
+input[type=checkbox]:checked + label {
+  color: gold;
+} 
+input[type=checkbox] + label {
+  color: grey;
+  margin-left: -22px;
+} 

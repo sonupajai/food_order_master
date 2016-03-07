@@ -1,13 +1,11 @@
 class MenuItem
   include Mongoid::Document
-  field :Item_name, type: String
-  field :Prize, type: String
-  field :Description, type: String
+  field :name, type: String
+  field :price, type: Integer
   field :quantity, type: String
-  field :menu_id, type: String
+  field :description, type: String
+  field :discount, type: Integer
 
-  validates :menu_id, :Item_name, :Prize,  :presence => true
-  belongs_to :menu  
-  
-  validates :Item_name, uniqueness: true
+  belongs_to :menu
+  has_many :order_items
 end

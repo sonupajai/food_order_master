@@ -1,10 +1,14 @@
 class AreasController < ApplicationController
-  before_action :set_city, only: [:edit, :new, :create, :update]
+  before_filter :authenticate_user!
+  load_and_authorize_resource
   before_action :set_area, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_city
   def index
-    @areas = Area.all
+    @areas = @city.areas.all.order_by(:name => 'asc')
+    @area = Area.new
   end
+
+  
 
   def show
   end
@@ -18,36 +22,27 @@ class AreasController < ApplicationController
 
   def create
     @area = Area.new(area_params)
-    respond_to do |format|
-      if @area.save
-        format.html { redirect_to @area, notice: 'Area was successfully created.' }
-        format.json { render :show, status: :created, location: @area }
-      else
-        format.html { render :new }
-        format.json { render json: @area.errors, status: :unprocessable_entity }
-      end
-    end
+    @area.city=@city
+   if @area.save
+     @areas = @city.areas.all
+   end
   end
 
   def update
-    respond_to do |format|
-      if @area.update(area_params)
-        format.html { redirect_to @area, notice: 'Area was successfully updated.' }
-        format.json { render :show, status: :ok, location: @area }
-      else
-        format.html { render :edit }
-        format.json { render json: @area.errors, status: :unprocessable_entity }
-      
-      end
+    if @area.update(area_params)
+     @areas = @city.areas.all
     end
   end
 
   def destroy
-    @area.destroy
-    respond_to do |format|
-      format.html { redirect_to areas_url, notice: 'Area was successfully destroyed.' }
-      format.json { head :no_content }
+    if @area.destroy
+      @areas = @city.areas.all
+      @area = Area.new
     end
+  end
+
+  def delete
+    @area = Area.find(params[:area_id])
   end
 
   private
@@ -56,11 +51,11 @@ class AreasController < ApplicationController
       @area = Area.find(params[:id])
     end
     def set_city
-        @cities = City.all
+      @city = City.find(params[:city_id])
     end
-    
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def area_params
-      params.require(:area).permit(:name, :pincode, :city_id)
+      params.require(:area).permit(:name, :pincode)
     end
 end

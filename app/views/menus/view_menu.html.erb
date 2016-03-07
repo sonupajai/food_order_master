@@ -1,0 +1,108 @@
+<script>
+	function div_scroll(str)
+	{
+		$('html, body').animate({scrollTop: $("#"+str).offset().top
+    	}, 2000);
+	}
+</script>
+<ol class = "breadcrumb">
+   <li><a href ="<%=root_path %>">Home</a></li>
+   <li><a href = "">Restuarants  </a></li>
+   <li><%=@hotel.name %></li>
+   <li>Menu List</li>
+</ol>
+<div class="container">
+<div class="menu_list" >
+  <h3><%=@hotel.name %> Menu</h3>
+  <ul class="cart__empty__elements">
+  <% i=0 %>
+  	<% @menus.each do |menu| %>
+  	<% i=i+1 %>
+    <li class=" ">
+     <a href="javascrip:void(0)" class="menu_list1" onclick="div_scroll('menu<%= i %>')">
+     <h4><%= menu.name.capitalize %></h4> </a>
+     </li>
+    <% end %>
+   </ul>
+</div>
+<div class="menu_div">
+  	<% j=0 %>
+  	<% @menus.each do |menu| %>
+  	<% j=j+1 %>
+  	<div id="menu<%=j%>">
+      <h3><%= menu.name.capitalize %></h3>
+      <% if menu.image.url!='/images/original/missing.png'%>
+
+      <img  src="<%= menu.image.url %>" alt="Logo Image" class="img-thumbnail" style="width:600px; height:100px">
+      <% end %><br/>
+      <% menu.menu_items.each do |menuitem| %> 
+
+      <div class="row" >
+        <div class="col-xs-5">
+        	<h4><%= menuitem.name %></h4>
+       	</div>
+        <div class="col-xs-4"><h4><u><%= menuitem.quantity %></u></h4></div>
+        <div class="col-xs-2">
+          <h5>RS.<%= menuitem.price %>
+		      <a href="<%=hotel_add_order_item_path(@hotel) %>?item_id=<%=menuitem.id%>&area_id=<%=@area_id %>" style="color:#009968!important; float:right" data-remote="true">
+            <i class="fa fa-plus-circle fa-lg"></i>
+		      </a>
+          </h5>
+          <hr/>
+        </div>
+	    </div>
+      <% end %>
+    </div>
+	  <hr/>
+    <% end %>
+  </div>
+  <div class="order_div">
+  	<div class="cart__content">
+      <div class="cart__header">
+	      <div class="cart__header__title">
+	        <h3 style="color:#009968!important">Your order &nbsp;&nbsp;&nbsp;<i class="fa fa-shopping-bag"></i>
+          </h3>
+          <hr>
+          <div class="cart__minimum-delivery-time" data-content="">
+            Estimated delivery time: <%=@delivery_area.try(:delivery_time )%>
+          </div>
+	      </div>
+	    </div>
+      <div class="cart__products">
+        <table id="myTable" class="table table-fixedheader table-striped">
+          <tbody id="order_items">
+          <%=render 'hotels/order_items'%>
+          </tbody>
+        </table>
+      </div>
+
+
+      <ul class="cart__empty__elements" style="list-style:none">
+        <li>
+            <i class="fa fa-bicycle fa-lg icon_color"></i>  &nbsp;Delivery fee:    Rs.<span id="delivery_charges"><%=@delivery_area.delivery_charges.to_i %></span>
+        </li>
+      	<li>
+            <i class="fa fa-rupee fa-lg icon_color" ></i> &nbsp;Delivery min.: Rs.
+            <span id="delivery_min_amount"><%=@delivery_area.min_order_amount.to_i %></span>
+        </li>
+        <% if @sum>0 %>
+        <li>
+           <h3><span id="total_amount">Total: <%=@sum+@delivery_area.delivery_charges.to_i%></h3>
+        </li>
+        <hr>
+        <% end %>
+      </ul>
+    </div>
+    <div class="cart__checkout">
+      <% if @sum+@delivery_area.delivery_charges.to_i>=@delivery_area.min_order_amount.to_i %>
+        <a class="btn btn-default  btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" href="<%=hotel_confirm_order_path(@hotel)%>?area_id=<%=@area_id %>" style="background-color:#009968" id="btn_proceed">
+            Proceed to checkout
+        <% else %>
+        <a class="btn btn-default disabled btn-block btn-lg btn-arrow btn-arrow-lg js-checkout-btn" href="<%=hotel_confirm_order_path(@hotel)%>?area_id=<%=@area_id %>" style="background-color:#009968" id="btn_proceed">
+            Proceed to checkout
+        <% end %>
+        </a>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,12 @@
+
+$('#rating-modal').modal('hide');
+$("#star_no<%=@hotel.id%>").html(" ");
+<% for i in 1..5  %>
+	<% if i<=@star.round %>
+	 $("#star_no<%=@hotel.id%>").append('<i class="fa fa-star" style="color: gold;"></i>');                    
+	<% else %>
+	 $("#star_no<%=@hotel.id%>").append('<i class="fa fa-star" style="color: grey;"></i>');                    
+	<%end %>    
+<%end %> 
+$("#star_no_link<%=@hotel.id%>").html(" <%= pluralize(@ratings.count.round, 'Rating') %>");
+star_no_link56bc6654aa8fea1e9f00002a

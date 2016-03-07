@@ -1,8 +1,11 @@
 class Menu
   include Mongoid::Document
-  field :Menu_name, type: String
-  field :description, type: String
+  include Mongoid::Paperclip
+  has_mongoid_attached_file :image
+  field :name, type: String
+
+  belongs_to :hotel
   has_many :menu_items
-  validates :Menu_name, :presence => true, uniqueness: true
-  
+  validates :name, presence: true, uniqueness: true
+  do_not_validate_attachment_file_type :image
 end

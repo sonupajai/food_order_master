@@ -1,0 +1,21 @@
+
+$("#order_items").html("<%= escape_javascript(render 'order_items') %>")
+
+var delivery_charges=$("#delivery_charges").text();
+var min_del_cost=$("#delivery_min_amount").text();
+var order_amount=parseInt("<%=@sum%>");
+if(order_amount>0)
+{
+var total_amount=order_amount+parseInt(delivery_charges);
+$("#total_amount").text("Total: "+total_amount);
+}else
+{
+$("#total_amount").text("");
+}
+if (order_amount >parseInt(min_del_cost))
+{
+	 $("#btn_proceed").removeClass("disabled");
+}else
+{
+	 $("#btn_proceed").addClass("disabled");
+}

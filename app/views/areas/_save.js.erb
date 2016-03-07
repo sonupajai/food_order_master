@@ -1,0 +1,9 @@
+$("#ul_errors").html("")
+<% if @area.errors.any? %>
+  	<% @area.errors.full_messages.each do |message| %>
+    	$("#ul_errors").append($("<li />").html("<%= message.html_safe %>"))
+	<% end %>
+<% else %>
+$(".area-index").html("<%= escape_javascript(render 'index') %>")
+$("#area-modal").modal("hide")
+<%end %>

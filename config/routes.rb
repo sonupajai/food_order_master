@@ -1,71 +1,47 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  get 'lastseen/new'
+
   root 'homes#index'
-
-  resources :menu_items
-  resources :menus
+  resources :orders do
+  get "order_status_update"
+  get "auth_order"
+ 
+  end
+  resources :notifications
+ 
   resources :hotels do
-    resources :delivery_areas
+    get 'add_order_item'
+    get 'reduce_order_item'
+    get 'confirm_order'
+    get 'delete_order_item'
+    get 'placed_order'
+    get 'update_status'
+    get "auth_hotel"
+    resources :menus do
+      get :view_menu, :on => :collection
+      resources :menu_items
+    end
+    resources :delivery_areas do
+    get "delete"
+    end
+    post 'rating', to:'homes#create_rating'
+    get 'rating/show', to:'homes#show_rating'
   end
-  resources :cities
-  resources :areas
+  
+  resources :cities do
+    get "delete"
+    resources :areas do
+    get "delete"
+  end
+  end
+  
   devise_for :users
+  resources :users, only: [:index, :edit, :update, :show]
   resources :homes do
-    get :autocomplete_city_name, :on => :collection
-    get :hotel_list, :on => :collection
+  get :hotel_list, :on => :collection
   end
-  get 'homes/hotel_list', to: 'homes#hotel_list'
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  get "authorize_hotels", to: 'hotels#authorized_hotels'  
+  get 'process_order', to:'orders#process_order'
+  mount Sidekiq::Web => '/sidekiq'
 end

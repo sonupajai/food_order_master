@@ -1,4 +1,11 @@
-<center><h1>Update Hotel</h1></center></br>
-<%= render 'form' %>
-<!%= link_to 'Show', @hotel %> 
+<ol class = "breadcrumb">
+   <li><a href ="<%=root_path %>">Home</a></li>
+   <li><a href = "">Restaurants </a></li>
+   <li>Update Restaurant</li>
+</ol>
+<div class="container">
+	<%= render'shared/error_messages', ref_obj: @hotel %>
+	<%= render 'form' %>
+</div>
+
 

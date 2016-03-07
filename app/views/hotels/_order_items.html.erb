@@ -1,0 +1,28 @@
+<%@sum=0%>
+<% @order_items.each do |oi| %>
+    <tr class="product">
+        <td class="product__quantity">
+          <span class="product__quantity__wrapper"><%=oi.quantity%></span>
+        </td>
+        <td class="product__title ">
+            <span class="product__title__name">
+               <b><%=oi.menu_item.name%></b>
+            </span>
+        </td>
+    </tr>
+    <tr class="product__price">
+        <td >
+            <div class="product__amount-controls">  
+                <a href="<%=hotel_reduce_order_item_path(@hotel) %>?item_id=<%=oi.menu_item_id %>&area_id=<%=@area_id %>" class="btn btn-xs btn-default" data-remote="true">-</a>
+                <a href="<%=hotel_add_order_item_path(@hotel) %>?item_id=<%=oi.menu_item_id%>&area_id=<%=@area_id %>" data-remote="true" class="btn btn-xs btn-default">+</a>               
+            </div>
+        </td>
+        <td>
+            <span class="product__price__element" style="float:right">
+                 &nbsp; Rs. <%=oi.menu_item.price.to_i*oi.quantity%>
+                 <% @sum+=oi.menu_item.price.to_i*oi.quantity %>
+            </span>
+        </td>
+    </tr>
+<% end %>
+

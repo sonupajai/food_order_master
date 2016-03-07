@@ -1,5 +1,12 @@
-<center><h1>New Hotel</h1></center>
+<ol class = "breadcrumb">
+   <li><a href ="<%=root_path %>">Home</a></li>
+   <li><a href = "">Restaurants </a></li>
+   <li>Add Restaurant</li>
+</ol>
+  <div class="container">
 
+<%= render'shared/error_messages', ref_obj: @hotel %>
 <%= render 'form' %>
+</div>
 
 
